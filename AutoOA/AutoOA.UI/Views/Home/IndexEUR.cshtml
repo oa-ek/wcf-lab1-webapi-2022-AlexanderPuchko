@@ -1,0 +1,48 @@
+﻿@using AutoOA.Core
+@using AutoOA.Repository
+@using AutoOA.Repository.Dto.FuelTypeDto
+@using AutoOA.Repository.Dto.GearBoxDto
+@using AutoOA.Repository.Dto.BodyTypeDto
+@using AutoOA.Repository.Dto.VehicleDto
+@using AutoOA.Repository.Dto.VehicleModelDto
+@using AutoOA.Repository.Dto.VehicleBrandDto
+
+@model IEnumerable<Vehicle>
+
+@{
+    Layout = "~/Views/Shared/_NiceLayout.cshtml";
+}
+<div class="text-center">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        @foreach (var u in Model)
+        {
+            <div style="margin-right: 5px">
+                <div class="card" style="width:400px">
+                    <a href="/Vehicles/Details/@u.VehicleId" class="text-decoration-none">
+                        <img class="card-img-top" style="height: 250px" src="@u.VehicleIconPath" alt=" ">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h5 class="fw-bolder">
+                                    <a href="/Vehicles/Details/@u.VehicleId" class="text-decoration-none">@u.VehicleModel.VehicleBrand.VehicleBrandName @u.VehicleModel.VehicleModelName @u.ProductionYear</a>
+                                </h5>
+                                <p class="text-success">@u.Price_EUR €</p>
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td><img class="card-img" src="@u.FuelType.IconPath" alt="..." style="width: 1.3rem"> @u.FuelType.FuelName</td>
+                                            <td><img class="card-img" src="@u.GearBox.IconPath" alt="..." style="width: 1.3rem"> @u.GearBox.GearBoxName</td>
+                                        </tr>
+                                        <tr>
+                                            <td><img class="card-img" src="@u.BodyType.IconPath" alt="..." style="width: 1.3rem"> @u.BodyType.BodyTypeName</td>
+                                            <td><img class="card-img" src="@u.MileageIconPath" alt="..." style="width: 1.3rem"> @u.Mileage км</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

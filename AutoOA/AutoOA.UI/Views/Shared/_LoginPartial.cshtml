@@ -1,0 +1,31 @@
+﻿@using AutoOA.Core;
+@using AutoOA.Repository.Dto
+@using Microsoft.AspNetCore.Identity
+@using AutoOA.Repository
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<ul>
+    <div style="display:flex">
+        @if (SignInManager.IsSignedIn(User))
+        {
+
+        <li class="nav-item">
+                @User.Identity?.Name
+        </li>
+        }
+        else
+        {
+        <div style="display:flex">
+        <li style="">
+            <a class="nav-link collapsed" asp-area="Identity" asp-page="/Account/Register">Зареєструватися</a>
+        </li>
+        <li style="margin-left:5px">
+            <a class="nav-link collapsed" asp-area="Identity" asp-page="/Account/Login">Увійти</a>
+        </li>
+        </div>
+
+        }
+    </div>
+</ul>

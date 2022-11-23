@@ -1,0 +1,17 @@
+﻿@page
+@model DownloadPersonalDataModel
+
+@{
+    Layout = "~/Views/Shared/_NiceLayout.cshtml";
+}
+
+@{
+    ViewData["Title"] = "Download Your Data";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+}
+
+<h3>@ViewData["Title"]</h3>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

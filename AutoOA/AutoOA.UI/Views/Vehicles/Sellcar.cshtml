@@ -1,0 +1,187 @@
+﻿@using AutoOA.Core
+@using AutoOA.Repository.Dto.VehicleDto
+
+@model VehicleCreateDto
+
+@{
+    Layout = "~/Views/Shared/_NiceLayout.cshtml";
+}
+
+@{
+
+    var region = ViewBag.Regions as IEnumerable<Region>;
+    var brands = ViewBag.Brands as IEnumerable<VehicleBrand>;
+    var model = ViewBag.Models as IEnumerable<VehicleModel>;
+    var fuel = ViewBag.FuelTypes as IEnumerable<FuelType>;
+    var gear = ViewBag.GearBoxes as IEnumerable<GearBox>;
+    var drive = ViewBag.DriveTypes as IEnumerable<DriveType>;
+    var body = ViewBag.BodyTypes as IEnumerable<BodyType>;
+}
+
+<div class="row">
+    <form asp-action="Sellcar" class="col-md-4" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label asp-for="RegionName" class="control-label">Регіон</label>
+            <select asp-for="RegionName" name="regionName" id="regionName" class="form-select" required>
+                <option selected disabled>Choose...</option>
+                @foreach (var u in region)
+                {
+                    <option value="@u.RegionName">@u.RegionName</option>
+                }
+            </select>
+            <span asp-validation-for="RegionName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="VehicleBrandName" class="control-label">Марка</label>
+            <select asp-for="VehicleBrandName" name="vehicleBrandName" id="vehicleBrandName" class="form-select" required>
+                <option selected disabled>Choose...</option>
+                @foreach (var u in brands)
+                {
+                    <option value="@u.VehicleBrandName">@u.VehicleBrandName</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="VehicleModelName" class="control-label">Модель</label>
+            <select asp-for="VehicleModelName" name="vehicleModelName" id="vehicleModelName" class="form-select" required>
+                <option selected disabled>Choose...</option>
+
+                @foreach (var u in model)
+                {
+                    <option value="@u.VehicleModelName">@u.VehicleModelName</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ProductionYear" class="control-label">Виберіть рік випуску</label>
+            <input asp-for="ProductionYear" class="form-control" />
+            <span asp-validation-for="ProductionYear" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="BodyTypeName" class="control-label">Тип кузова</label>
+            <select asp-for="BodyTypeName" name="bodyTypeName" id="bodyTypeName" class="form-select" required>
+                <option selected disabled>Choose...</option>
+                @foreach (var u in body)
+                {
+                    <option value="@u.BodyTypeName">@u.BodyTypeName</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Color" class="control-label">Колір</label>
+            <input asp-for="Color" class="form-control" />
+            <span asp-validation-for="Color" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="StateNumber" class="control-label">Гос.Номер</label>
+            <input asp-for="StateNumber" class="form-control" />
+            <span asp-validation-for="StateNumber" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="FuelTypeName" class="control-label">Паливо</label>
+            <select asp-for="FuelTypeName" name="fuelTypeName" id="fuelTypeName" class="form-select" required>
+                <option selected disabled>Choose...</option>
+                @foreach (var u in fuel)
+                {
+                    <option value="@u.FuelName">@u.FuelName</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="NumberOfSeats" class="control-label">Кількість сидінь</label>
+            <input asp-for="NumberOfSeats" class="form-control" />
+            <span asp-validation-for="NumberOfSeats" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="NumberOfDoors" class="control-label">Кількість дверей</label>
+            <input asp-for="NumberOfDoors" class="form-control" />
+            <span asp-validation-for="NumberOfDoors" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price_USD" class="control-label">Ціна</label>
+            <input asp-for="Price_USD" class="form-control" />
+            <span asp-validation-for="Price_USD" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Mileage" class="control-label">Пробіг</label>
+            <input asp-for="Mileage" class="form-control" />
+            <span asp-validation-for="Mileage" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="isNew" class="control-label">Новий?</label>
+            <input asp-for="isNew" class="form-control" />
+            <span asp-validation-for="isNew" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="GearBoxName" class="control-label">Тип коробки передач</label>
+            <select asp-for="GearBoxName" name="gearBoxName" id="gearBoxName" class="form-select" required>
+                <option selected disabled>Choose...</option>
+                @foreach (var u in gear)
+                {
+                    <option value="@u.GearBoxName">@u.GearBoxName</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="DriveTypeName" class="form-label">Тип приводу</label>
+            <select asp-for="DriveTypeName" class="form-select" name="driveTypeName" id="driveTypeName" required>
+                <option selected disabled>Choose...</option>
+                @foreach (var u in drive)
+                {
+                    <option value="@u.DriveTypeName">@u.DriveTypeName</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="VehicleIconPath" class="control-label">Додайте фото</label>
+            <input class="form-control" name="picture"  id="picture" type="file" />
+            <span asp-validation-for="VehicleIconPath" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description" class="form-label">Опис українською</label>
+            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            <button value="Create" va class="btn btn-primary" type="submit">Подати оголошення</button>
+        </div>
+    </form>
+</div>
+
+<div class="float-end">
+    <a href="/Vehicles/Add-BodyType" class="btn btn-outline-primary">Додати тип кузова</a>
+</div>
+
+@section Scripts {
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(function () {
+            $(".form-select").select2();
+        });
+    </script>
+}

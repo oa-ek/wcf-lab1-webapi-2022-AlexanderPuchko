@@ -1,0 +1,35 @@
+﻿@using AutoOA.Repository.Dto.DriveTypeDto
+
+@model DriveTypeCreateDto
+
+@{
+    Layout = "~/Views/Shared/_NiceLayout.cshtml";
+}
+
+<div class="row">
+    <form asp-action="Create" class="col-md-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label asp-for="DriveTypeName" class="control-label">Тип приводу</label>
+            <input asp-for="DriveTypeName" class="form-control" />
+            <span asp-validation-for="DriveTypeName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <button value="Create" va class="btn btn-primary" type="submit">Подати оголошення</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(function () {
+            $(".form-select").select2();
+        });
+    </script>
+}

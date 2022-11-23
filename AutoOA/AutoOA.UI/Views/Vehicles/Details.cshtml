@@ -1,0 +1,46 @@
+﻿@using AutoOA.Core
+@using AutoOA.Repository.Dto.VehicleModelDto
+@using AutoOA.Repository.Dto.VehicleDto
+@using Microsoft.AspNetCore.Identity
+
+@model Vehicle
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_NiceLayout.cshtml";
+}
+
+<div class="card mb-3" style="max-width: 100%">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img class="card-img" src="@Model.VehicleIconPath" alt="@Model.VehicleIconPath" style="background-repeat: no-repeat;">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h1>@Model.VehicleModel.VehicleBrand.VehicleBrandName @Model.VehicleModel.VehicleModelName @Model.ProductionYear</h1>
+                <h3>Description:</h3>
+                <p>@Model.Description</p>
+                <p>Color: @Model.Color</p>
+                <p>Місце: @Model.Region.RegionName</p>
+                <p>Створено: @Model.SalesData.CreatedOn</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (SignInManager.IsSignedIn(User) && User.Identity.Name == Model.User.UserName || User.IsInRole("Admin"))
+{
+    <div class="float-end">
+        <a href="/Vehicles/Edit/@Model.VehicleId" class="btn btn-outline-primary">Редагувати</a>
+        <a href="/Vehicles/Delete/@Model.VehicleId" class="btn btn-danger">Видалити</a>
+    </div>
+}
+
+
+
+
+
+

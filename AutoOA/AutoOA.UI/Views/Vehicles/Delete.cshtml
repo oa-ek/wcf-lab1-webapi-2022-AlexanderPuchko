@@ -1,0 +1,37 @@
+﻿@using AutoOA.Core
+@using AutoOA.Repository.Dto.VehicleModelDto
+@using AutoOA.Repository.Dto.VehicleDto
+
+@model VehicleReadDto
+
+@{
+    Layout = "~/Views/Shared/_NiceLayout.cshtml";
+}
+
+<h1>Confirm delete</h1>
+<hr />
+
+<div class="card mb-3" style="max-width: 100%;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img class="float-end" src="@Model.VehicleIconPath" alt=" ">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h1>@Model.VehicleBrandName @Model.VehicleModelName @Model.ProductionYear</h1>
+                <h3>Description:</h3>
+                <p>@Model.Description</p>
+                <p>Color: @Model.Color</p>
+                <p>Місце: @Model.RegionName</p>
+                <p>Створено: @Model.SalesData.CreatedOn</p>
+            </div>
+            <form asp-action="ConfirmDelete" class="col-mb-4">
+                @Html.AntiForgeryToken()
+                <input asp-for="Id" type="hidden" />
+                <button type="submit" class="btn btn-warning">Видалити оголошення</button> <a href="/Vehicles/Index/" class="btn btn-outline-dark">Повернутися до списку</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<hr />
