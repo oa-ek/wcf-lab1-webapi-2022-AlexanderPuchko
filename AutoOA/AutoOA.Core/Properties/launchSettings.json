@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "AutoOA.Core": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:58386;http://localhost:58388"
+    }
+  }
+}
