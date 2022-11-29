@@ -1,4 +1,6 @@
 ﻿using AutoOA.Core;
+using AutoOA.Repository.Dto.BodyTypeDto;
+using AutoOA.Repository.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,27 +11,26 @@ namespace AutoOA.API.Controllers
     public class BodyTypeAPIController : ControllerBase
     {
         private readonly ILogger<BodyTypeAPIController> _logger;
-        private readonly AutoOADbContext Context;
+        private readonly BodyTypeRepository Context;
 
-        public BodyTypeAPIController(ILogger<BodyTypeAPIController> logger, AutoOADbContext context)
+        public BodyTypeAPIController(ILogger<BodyTypeAPIController> logger, BodyTypeRepository context)
         {
             _logger = logger;
             Context = context;
         }
 
-
         [HttpGet]
-        public async Task<ActionResult<List<BodyType>>> Get()
-        {
-            return Ok(await Context.BodyTypes.ToListAsync());
-        }
-
-
-        [HttpGet]
-        public AutoOADbContext GetAutoOADbContext()
+        public BodyTypeRepository GetAutoOADbContext()
         {
             return Context;
         }
+
+        [HttpGet("GetHui")]
+        public async Task<IEnumerable<BodyTypeReadDto>> GetListAsync()
+        {
+            return await Context.GetListAsync();
+        }
+        
 
     }
 }

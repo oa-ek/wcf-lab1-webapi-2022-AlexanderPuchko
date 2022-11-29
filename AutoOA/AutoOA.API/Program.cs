@@ -3,25 +3,51 @@ using Microsoft.EntityFrameworkCore;
 using AutoOA.Core;
 using AutoOA.Repository.Repositories;
 using System.Reflection;
+using AutoMapper;
+using AutoOA.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
-builder.Services.AddControllers();
+
+// Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("AutoOAConnection");
+builder.Services.AddDbContext<AutoOADbContext>(options =>
+    options.UseSqlServer(connectionString));
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddScoped<BodyTypeRepository>();
+
+
+
+
+builder.Services.AddAutoMapper(typeof(AppAutoMapper).Assembly);
+
+builder.Services.AddControllersWithViews();
+
 builder.Services.AddSwaggerGen(s =>
 {
     s.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
     {
         Version = "v1",
         Title = "AutoOAAPI",
-        Description = "Api for AutoOA"
+        Description = "Api for AutoOA",
+        Contact = new Microsoft.OpenApi.Models.OpenApiContact
+        {
+            Email = "oleksandr.puchko@oa.edu.ua",
+            Name = "Puchko Olexander"
+        }
     });
+
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";//через іксемель коментарі документується код
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);//options.IncludeXmlComments(xmlPath);
 });
 
-//builder.Services.AddAutoMapper(typeof(AppAutoMapper).Assembly);
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 var app = builder.Build();
 
@@ -29,11 +55,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "AutoOAAPI");
-        c.RoutePrefix = string.Empty;
-    });
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

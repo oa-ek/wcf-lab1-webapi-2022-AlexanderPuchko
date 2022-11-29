@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using AutoOA.Core;
-using AutoOA.Repository.Dto;
 using AutoOA.Repository.Dto.BodyTypeDto;
 using AutoOA.Repository.Dto.DriveTypeDto;
 using AutoOA.Repository.Dto.FuelTypeDto;
@@ -14,9 +13,9 @@ using AutoOA.Repository.Dto.VehicleModelDto;
 
 namespace AutoOA.Infrastructure
 {
-    public class AppAutoMapper : Profile 
-    { 
-        public AppAutoMapper() 
+    public class AppAutoMapper : Profile
+    {
+        public AppAutoMapper()
         {
             CreateMap<BodyTypeCreateDto, BodyType>();
             CreateMap<BodyType, BodyTypeReadDto>();
@@ -47,6 +46,4 @@ namespace AutoOA.Infrastructure
             CreateMap<VehicleModel, VehicleModelReadDto>();
         }
     }
-
-
 }

@@ -1,14 +1,25 @@
-﻿using AutoOA.Core;
+﻿using AutoMapper;
+using AutoOA.Core;
+using Microsoft.EntityFrameworkCore;
+using AutoOA.Repository.Dto.BodyTypeDto;
 
 namespace AutoOA.Repository.Repositories
 {
     public class BodyTypeRepository
     {
         private readonly AutoOADbContext _ctx;
+        private readonly IMapper _mapper;
 
-        public BodyTypeRepository(AutoOADbContext ctx)
+        public BodyTypeRepository(AutoOADbContext ctx, IMapper mapper)
         {
             _ctx = ctx;
+            _mapper = mapper;
+        }
+
+        public async Task<IEnumerable<BodyTypeReadDto>> GetListAsync()
+        {
+            return _mapper.Map<IEnumerable<BodyTypeReadDto>>(await _ctx.BodyTypes.ToListAsync());
+
         }
 
         public async Task<BodyType> AddBodyTypeAsync(BodyType type)
