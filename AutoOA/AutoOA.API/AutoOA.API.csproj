@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AutoOA.Core\AutoOA.Core.csproj" />
+    <ProjectReference Include="..\AutoOA.Repository\AutoOA.Repository.csproj" />
   </ItemGroup>
 
 </Project>
