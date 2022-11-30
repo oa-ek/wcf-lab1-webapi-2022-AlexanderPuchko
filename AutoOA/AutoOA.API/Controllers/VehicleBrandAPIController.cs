@@ -1,5 +1,5 @@
 ﻿using AutoOA.Core;
-using AutoOA.Repository.Dto.BodyTypeDto;
+using AutoOA.Repository.Dto.VehicleBrandDto;
 using AutoOA.Repository.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,25 +8,25 @@ namespace AutoOA.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BodyTypeAPIController : ControllerBase
+    public class VehicleBrandAPIController : ControllerBase
     {
-        private readonly ILogger<BodyTypeAPIController> _logger;
-        private readonly BodyTypeRepository Context;
+        private readonly ILogger<VehicleBrandAPIController> _logger;
+        private readonly VehicleBrandRepository Context;
 
-        public BodyTypeAPIController(ILogger<BodyTypeAPIController> logger, BodyTypeRepository context)
+        public VehicleBrandAPIController(ILogger<VehicleBrandAPIController> logger, VehicleBrandRepository context)
         {
             _logger = logger;
             Context = context;
         }
 
         [HttpGet]
-        public BodyTypeRepository GetBodyTypeRepository()
+        public VehicleBrandRepository GetVehicleBrandRepository()
         {
             return Context;
         }
 
         [HttpGet("GetHui")]
-        public async Task<IEnumerable<BodyTypeReadDto>> GetListAsync()
+        public async Task<IEnumerable<VehicleBrandReadDto>> GetListAsync()
         {
             return await Context.GetListAsync();
         }

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using AutoOA.Core;
-using Microsoft.EntityFrameworkCore;
 using AutoOA.Repository.Dto.BodyTypeDto;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutoOA.Repository.Repositories
 {

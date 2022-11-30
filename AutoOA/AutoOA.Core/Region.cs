@@ -6,7 +6,7 @@ namespace AutoOA.Core
     {
         [Key]
         public int RegionId { get; set; }
-        public string? RegionName { get; set; }
+        public string? RegionName { get; set; } = string.Empty;
 
         public virtual ICollection<Vehicle>? Vehicles { get; set; }
     }

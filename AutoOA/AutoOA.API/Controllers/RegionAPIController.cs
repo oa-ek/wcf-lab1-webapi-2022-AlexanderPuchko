@@ -1,5 +1,5 @@
 ﻿using AutoOA.Core;
-using AutoOA.Repository.Dto.BodyTypeDto;
+using AutoOA.Repository.Dto.RegionDto;
 using AutoOA.Repository.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,25 +8,25 @@ namespace AutoOA.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BodyTypeAPIController : ControllerBase
+    public class RegionAPIController : ControllerBase
     {
-        private readonly ILogger<BodyTypeAPIController> _logger;
-        private readonly BodyTypeRepository Context;
+        private readonly ILogger<RegionAPIController> _logger;
+        private readonly RegionRepository Context;
 
-        public BodyTypeAPIController(ILogger<BodyTypeAPIController> logger, BodyTypeRepository context)
+        public RegionAPIController(ILogger<RegionAPIController> logger, RegionRepository context)
         {
             _logger = logger;
             Context = context;
         }
 
         [HttpGet]
-        public BodyTypeRepository GetBodyTypeRepository()
+        public RegionRepository GetRegionRepository()
         {
             return Context;
         }
 
         [HttpGet("GetHui")]
-        public async Task<IEnumerable<BodyTypeReadDto>> GetListAsync()
+        public async Task<IEnumerable<RegionReadDto>> GetListAsync()
         {
             return await Context.GetListAsync();
         }

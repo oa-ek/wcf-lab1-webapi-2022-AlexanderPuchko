@@ -6,7 +6,7 @@ namespace AutoOA.Core
     {
         [Key]
         public int VehicleModelId { get; set; }
-        public string? VehicleModelName { get; set; }
+        public string? VehicleModelName { get; set; } = string.Empty;
 
         public int VehicleBrandId { get; set; }
         public VehicleBrand VehicleBrand { get; set; }

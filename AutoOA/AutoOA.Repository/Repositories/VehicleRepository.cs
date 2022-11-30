@@ -3,18 +3,28 @@ using AutoOA.Repository.Dto.VehicleDto;
 using Microsoft.EntityFrameworkCore;
 using AutoOA.Repository.Repositories;
 using Microsoft.AspNetCore.Hosting.Server;
+using AutoMapper;
+using AutoOA.Repository.Dto.UserDto;
 
 namespace AutoOA.Repository.Repositories
 {
     public class VehicleRepository
     {
         private readonly AutoOADbContext _ctx;
+        private readonly IMapper _mapper;
 
-        public VehicleRepository(AutoOADbContext ctx)
+        public VehicleRepository(AutoOADbContext ctx, IMapper mapper)
         {
             _ctx = ctx;
+            _mapper = mapper;
         }
-     
+
+        public async Task<IEnumerable<VehicleReadDto>> GetListAsync()
+        {
+            return _mapper.Map<IEnumerable<VehicleReadDto>>(await _ctx.BodyTypes.ToListAsync());
+
+        }
+
         public async Task<Vehicle> AddVehicleAsync(Vehicle vehicle)
         {
             _ctx.Vehicles.Add(vehicle);

@@ -6,7 +6,7 @@ namespace AutoOA.Core
     {
         [Key]
         public int FuelTypeId { get; set; }
-        public string? FuelName { get; set; }
+        public string? FuelName { get; set; } = string.Empty;
         public string? IconPath { get; set; } = @"\Images\fuelTypeIcon.png";
 
         public virtual ICollection<Vehicle> Vehicle { get; set; }

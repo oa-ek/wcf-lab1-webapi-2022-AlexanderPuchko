@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AutoOA.Repository.Dto.UserDto;
+using AutoMapper;
+using AutoOA.Repository.Dto.SalesDataDto;
 
 namespace AutoOA.Repository.Repositories
 {
@@ -10,14 +12,22 @@ namespace AutoOA.Repository.Repositories
         private readonly AutoOADbContext _ctx;
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IMapper _mapper;
 
         public UsersRepository(AutoOADbContext ctx,
             UserManager<User> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager, IMapper mapper)
         {
             _ctx = ctx;
             _userManager = userManager;
             _roleManager = roleManager;
+            _mapper = mapper;
+        }
+
+        public async Task<IEnumerable<UserReadDto>> GetListAsync()
+        {
+            return _mapper.Map<IEnumerable<UserReadDto>>(await _ctx.BodyTypes.ToListAsync());
+
         }
 
         public async Task<User> CreateUserAsync(string? firstName, string? lastName, string? password, string? email)

@@ -8,7 +8,6 @@ namespace AutoOA.Core
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int VehicleId { get; set; }
-
         public int RegionId { get; set; }
         public Region? Region { get; set; } // Регіон
 
@@ -36,17 +35,17 @@ namespace AutoOA.Core
         public string MileageIconPath { get; set; } = @"\Images\MileageIcon.png";
         public int Mileage { get; set; } // Пробіг
 
-        public string? VehicleIconPath { get; set; } // Шлях до іконки
+        public string? VehicleIconPath { get; set; }  // Шлях до іконки
 
         public int FuelTypeId { get; set; }
         public FuelType? FuelType { get; set; } // Тип палива
         
-        public string? Color { get; set; } // Колір
-        public string? Description { get; set; } // Опис
+        public string? Color { get; set; } = string.Empty; // Колір
+        public string? Description { get; set; } = string.Empty; // Опис
 
         public SalesData? SalesData { get; set; } // День продажу
 
-        public string? UserId { get; set; }
-        public User? User { get; set; }
+        public string? UserId { get; set; } = string.Empty;
+        public User? User { get; set; } 
     }
 }

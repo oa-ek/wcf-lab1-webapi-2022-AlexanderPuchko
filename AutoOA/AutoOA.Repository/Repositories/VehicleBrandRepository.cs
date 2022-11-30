@@ -1,6 +1,8 @@
-﻿using AutoOA.Core;
+﻿using AutoMapper;
+using AutoOA.Core;
 using AutoOA.Repository.Dto.BodyTypeDto;
 using AutoOA.Repository.Dto.VehicleBrandDto;
+using AutoOA.Repository.Dto.VehicleDto;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoOA.Repository.Repositories
@@ -8,10 +10,18 @@ namespace AutoOA.Repository.Repositories
     public class VehicleBrandRepository
     {
         private readonly AutoOADbContext _ctx;
+        private readonly IMapper _mapper;
 
-        public VehicleBrandRepository(AutoOADbContext ctx)
+        public VehicleBrandRepository(AutoOADbContext ctx, IMapper mapper)
         {
             _ctx = ctx;
+            _mapper = mapper;
+        }
+
+        public async Task<IEnumerable<VehicleBrandReadDto>> GetListAsync()
+        {
+            return _mapper.Map<IEnumerable<VehicleBrandReadDto>>(await _ctx.BodyTypes.ToListAsync());
+
         }
 
         public async Task<VehicleBrand> AddVehicleBrandAsync(VehicleBrand type)

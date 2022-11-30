@@ -21,7 +21,15 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<BodyTypeRepository>();
-
+builder.Services.AddScoped<DriveTypeRepository>();
+builder.Services.AddScoped<FuelTypeRepository>();
+builder.Services.AddScoped<GearBoxRepository>();
+builder.Services.AddScoped<RegionRepository>();
+builder.Services.AddScoped<SalesDataRepository>();
+//builder.Services.AddScoped<UsersRepository>();
+builder.Services.AddScoped<VehicleRepository>();
+builder.Services.AddScoped<VehicleBrandRepository>();
+builder.Services.AddScoped<VehicleModelRepository>();
 
 
 
