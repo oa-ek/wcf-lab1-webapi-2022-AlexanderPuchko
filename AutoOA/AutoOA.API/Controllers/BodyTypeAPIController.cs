@@ -25,7 +25,7 @@ namespace AutoOA.API.Controllers
             return Context;
         }
 
-        [HttpGet("GetHui")]
+        [HttpGet("Вивід")]
         public async Task<IEnumerable<BodyTypeReadDto>> GetListAsync()
         {
             return await Context.GetListAsync();

@@ -19,7 +19,7 @@ namespace AutoOA.Repository.Repositories
 
         public async Task<IEnumerable<DriveTypeReadDto>> GetListAsync()
         {
-            return _mapper.Map<IEnumerable<DriveTypeReadDto>>(await _ctx.BodyTypes.ToListAsync());
+            return _mapper.Map<IEnumerable<DriveTypeReadDto>>(await _ctx.DriveTypes.ToListAsync());
 
         }
 
