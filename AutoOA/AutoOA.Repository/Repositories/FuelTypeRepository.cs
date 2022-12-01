@@ -18,7 +18,7 @@ namespace AutoOA.Repository.Repositories
 
         public async Task<IEnumerable<FuelTypeReadDto>> GetListAsync()
         {
-            return _mapper.Map<IEnumerable<FuelTypeReadDto>>(await _ctx.BodyTypes.ToListAsync());
+            return _mapper.Map<IEnumerable<FuelTypeReadDto>>(await _ctx.FuelTypes.ToListAsync());
 
         }
 
