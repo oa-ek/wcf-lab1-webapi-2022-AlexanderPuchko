@@ -9,8 +9,8 @@ namespace AutoOA.Core
         public string? VehicleModelName { get; set; } = string.Empty;
 
         public int VehicleBrandId { get; set; }
-        public VehicleBrand VehicleBrand { get; set; }
+        public VehicleBrand? VehicleBrand { get; set; }
 
-        public virtual ICollection<Vehicle> Vehicles { get; set; }
+        public virtual ICollection<Vehicle>? Vehicles { get; set; }
     }
 }

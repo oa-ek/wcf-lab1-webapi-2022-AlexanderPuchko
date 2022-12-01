@@ -7,6 +7,6 @@ namespace AutoOA.Core
         public string? FirstName { get; set; } = string.Empty;
         public string? LastName { get; set; } = string.Empty;
 
-        public virtual ICollection<Vehicle> Vehicles { get; set; }
+        public virtual ICollection<Vehicle>? Vehicles { get; set; }
     }
 }

@@ -9,6 +9,6 @@ namespace AutoOA.Core
         public string BodyTypeName { get; set; } = string.Empty;
         public string IconPath { get; set; } = @"\Images\BodyTypeIcon.png"; //TO DO PRAVKI
 
-        public virtual ICollection<Vehicle> Vehicle { get; set; }
+        public virtual ICollection<Vehicle>? Vehicle { get; set; }
     }
 }
