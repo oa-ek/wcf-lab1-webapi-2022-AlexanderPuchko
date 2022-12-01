@@ -19,7 +19,7 @@ namespace AutoOA.Repository.Repositories
 
         public async Task<IEnumerable<SalesDataReadDto>> GetListAsync()
         {
-            return _mapper.Map<IEnumerable<SalesDataReadDto>>(await _ctx.BodyTypes.ToListAsync());
+            return _mapper.Map<IEnumerable<SalesDataReadDto>>(await _ctx.SalesData.ToListAsync());
 
         }
 

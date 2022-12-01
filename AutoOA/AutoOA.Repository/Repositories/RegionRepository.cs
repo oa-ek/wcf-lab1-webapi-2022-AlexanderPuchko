@@ -24,7 +24,7 @@ namespace AutoOA.Repository.Repositories
 
         public async Task<IEnumerable<RegionReadDto>> GetListAsync()
         {
-            return _mapper.Map<IEnumerable<RegionReadDto>>(await _ctx.BodyTypes.ToListAsync());
+            return _mapper.Map<IEnumerable<RegionReadDto>>(await _ctx.Regions.ToListAsync());
 
         }
 

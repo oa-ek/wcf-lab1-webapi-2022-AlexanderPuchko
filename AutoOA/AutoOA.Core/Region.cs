@@ -8,6 +8,6 @@ namespace AutoOA.Core
         public int RegionId { get; set; }
         public string? RegionName { get; set; }
 
-        public virtual ICollection<Vehicle>? Vehicles { get; set; }
+        public virtual ICollection<Vehicle>? Vehicle { get; set; }
     }
 }
