@@ -7,6 +7,6 @@ namespace AutoOA.Repository.Dto.VehicleBrandDto
         public int VehicleBrandId { get; set; }
         public string? VehicleBrandName { get; set; }
 
-        public ICollection<VehicleModel> VehicleModels { get; set; }
+        public ICollection<VehicleModel> VehicleModel { get; set; }
     }
 }
