@@ -80,15 +80,14 @@ namespace AutoOA.Repository.Repositories
 
             var vehicleDto = new VehicleReadDto
             {
-                Id = v.VehicleId,
-                RegionName = v.Region.RegionName,
-                BodyTypeName = v.BodyType.BodyTypeName,
-                VehicleModelName = v.VehicleModel.VehicleModelName,
-                DriveTypeName = v.DriveType.DriveTypeName,
+                VehicleId = v.VehicleId,
+                RegionId = v.Region.RegionName,
+                BodyTypeId = v.BodyType.BodyTypeName,
+                VehicleModelId = v.VehicleModel.VehicleModelName,
+                DriveTypeId = v.DriveType.DriveTypeName,
                 StateNumber = v.StateNumber,
                 ProductionYear = v.ProductionYear,
-                VehicleBrandName = v.VehicleModel.VehicleBrand.VehicleBrandName,
-                GearBoxName = v.GearBox.GearBoxName,
+                GearBoxId = v.GearBox.GearBoxName,
                 NumberOfSeats = v.NumberOfSeats,
                 NumberOfDoors = v.NumberOfDoors,
                 Price_USD = v.Price_USD,
@@ -97,7 +96,7 @@ namespace AutoOA.Repository.Repositories
                 isNew = v.isNew,
                 Mileage = v.Mileage,
                 VehicleIconPath = v.VehicleIconPath,
-                FuelTypeName = v.FuelType.FuelName,
+                FuelTypeId = v.FuelType.FuelTypeName,
                 Color = v.Color,
                 Description = v.Description,
                 SalesData = v.SalesData,
@@ -116,7 +115,7 @@ namespace AutoOA.Repository.Repositories
                  Include(x => x.GearBox).
                  Include(x => x.Region).
                  Include(x => x.User).
-                 Include(x => x.SalesData).FirstOrDefault(x => x.VehicleId == vehicleDto.Id);
+                 Include(x => x.SalesData).FirstOrDefault(x => x.VehicleId == vehicleDto.VehicleId);
 
             if (vehicle.Region.RegionName != regionName)
                 vehicle.Region = _ctx.Regions.FirstOrDefault(x => x.RegionName == regionName);
@@ -150,8 +149,8 @@ namespace AutoOA.Repository.Repositories
                 vehicle.Mileage = vehicleDto.Mileage;
             if (vehicle.VehicleIconPath != vehicleDto.VehicleIconPath)
                 vehicle.VehicleIconPath = vehicleDto.VehicleIconPath;
-            if (vehicle.FuelType.FuelName != fuelTypeName)
-                vehicle.FuelType = _ctx.FuelTypes.FirstOrDefault(x => x.FuelName == fuelTypeName);
+            if (vehicle.FuelType.FuelTypeName != fuelTypeName)
+                vehicle.FuelType = _ctx.FuelTypes.FirstOrDefault(x => x.FuelTypeName == fuelTypeName);
             if (vehicle.Color != vehicleDto.Color)
                 vehicle.Color = vehicleDto.Color;
             if (vehicle.Description != vehicleDto.Description)

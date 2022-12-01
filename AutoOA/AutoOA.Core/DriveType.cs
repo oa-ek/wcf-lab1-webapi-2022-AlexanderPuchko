@@ -6,7 +6,7 @@ namespace AutoOA.Core
     {
         [Key]
         public int DriveTypeId { get; set; }
-        public string? DriveTypeName { get; set; } = string.Empty;
+        public string? DriveTypeName { get; set; }
 
         public virtual ICollection<Vehicle>? Vehicle { get; set; }
     }

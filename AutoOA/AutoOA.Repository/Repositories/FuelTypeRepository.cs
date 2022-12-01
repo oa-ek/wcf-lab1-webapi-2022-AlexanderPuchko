@@ -26,7 +26,7 @@ namespace AutoOA.Repository.Repositories
         {
             _ctx.FuelTypes.Add(type);
             await _ctx.SaveChangesAsync();
-            return _ctx.FuelTypes.FirstOrDefault(x => x.FuelName == type.FuelName);
+            return _ctx.FuelTypes.FirstOrDefault(x => x.FuelTypeName == type.FuelTypeName);
         }
 
         public List<FuelType> GetFuelTypes()
@@ -42,7 +42,7 @@ namespace AutoOA.Repository.Repositories
 
         public FuelType GetFuelTypeByName(string name)
         {
-            return _ctx.FuelTypes.FirstOrDefault(x => x.FuelName == name);
+            return _ctx.FuelTypes.FirstOrDefault(x => x.FuelTypeName == name);
         }
 
         public async Task DeleteFuelTypeAsync(int id)

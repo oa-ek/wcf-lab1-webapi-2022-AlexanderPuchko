@@ -108,47 +108,47 @@ namespace AutoOA.Core
                 new FuelType
                 {
                     FuelTypeId = 1,
-                    FuelName = "Дизель",
+                    FuelTypeName = "Дизель",
                 },
                 new FuelType
                 {
                     FuelTypeId = 2,
-                    FuelName = "Бензин",
+                    FuelTypeName = "Бензин",
                 },
                 new FuelType
                 {
                     FuelTypeId = 3,
-                    FuelName = "Газ",
+                    FuelTypeName = "Газ",
                 },
                 new FuelType
                 {
                     FuelTypeId = 4,
-                    FuelName = "Газ / Бензин",
+                    FuelTypeName = "Газ / Бензин",
                 },
                 new FuelType
                 {
                     FuelTypeId = 5,
-                    FuelName = "Гібрид",
+                    FuelTypeName = "Гібрид",
                 },
                 new FuelType
                 {
                     FuelTypeId = 6,
-                    FuelName = "Електро",
+                    FuelTypeName = "Електро",
                 },
                 new FuelType
                 {
                     FuelTypeId = 7,
-                    FuelName = "Інше",
+                    FuelTypeName = "Інше",
                 },
                 new FuelType
                 {
                     FuelTypeId = 8,
-                    FuelName = "Газ метан",
+                    FuelTypeName = "Газ метан",
                 },
                 new FuelType
                 {
                     FuelTypeId = 9,
-                    FuelName = "Газ пропан-бутан",
+                    FuelTypeName = "Газ пропан-бутан",
                 });
             builder.Entity<BodyType>().HasData(
                 new BodyType
