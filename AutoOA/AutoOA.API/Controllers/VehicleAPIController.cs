@@ -19,18 +19,17 @@ namespace AutoOA.API.Controllers
             Context = context;
         }
 
-        [HttpGet]
-        public VehicleRepository GetVehicleRepository()
-        {
-            return Context;
-        }
-
-        [HttpGet("GetHui")]
-        public async Task<IEnumerable<VehicleReadDto>> GetListAsync()
+        [HttpGet("All-Data")]
+        public async Task<IEnumerable<VehicleReadDto>> GetListVehicle()
         {
             return await Context.GetListAsync();
         }
-        
+
+        [HttpGet("One-Data{id}")]
+        public async Task<VehicleReadDto> GetVehicleId(int id)
+        {
+            return await Context.GetAsync(id);
+        }
 
     }
 }

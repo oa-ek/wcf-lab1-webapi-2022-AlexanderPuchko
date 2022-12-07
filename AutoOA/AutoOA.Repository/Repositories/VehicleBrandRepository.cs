@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using AutoOA.Core;
-using AutoOA.Repository.Dto.BodyTypeDto;
 using AutoOA.Repository.Dto.VehicleBrandDto;
-using AutoOA.Repository.Dto.VehicleDto;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoOA.Repository.Repositories
@@ -17,19 +15,25 @@ namespace AutoOA.Repository.Repositories
             _ctx = ctx;
             _mapper = mapper;
         }
-
-        public async Task<IEnumerable<VehicleBrandReadDto>> GetListAsync()
+        //API
+        public async Task<IEnumerable<VehicleBrandReadDto>> GetListAsync() //Вивід всіх даних
         {
             return _mapper.Map<IEnumerable<VehicleBrandReadDto>>(await _ctx.VehicleBrands.ToListAsync());
 
         }
-
+        public async Task<VehicleBrandReadDto> GetAsync(int id) //Вивід даних по id
+        {
+            return _mapper.Map<VehicleBrandReadDto>(await _ctx.VehicleBrands.FirstAsync(x => x.VehicleBrandId == id));
+        }
+        //
         public async Task<VehicleBrand> AddVehicleBrandAsync(VehicleBrand type)
         {
             _ctx.VehicleBrands.Add(type);
             await _ctx.SaveChangesAsync();
             return _ctx.VehicleBrands.FirstOrDefault(x => x.VehicleBrandName == type.VehicleBrandName);
         }
+
+        
 
         public List<VehicleBrand> GetVehicleBrands()
         {

@@ -19,18 +19,18 @@ namespace AutoOA.API.Controllers
             Context = context;
         }
 
-        [HttpGet]
-        public GearBoxRepository GetGearBoxRepository()
-        {
-            return Context;
-        }
 
-        [HttpGet("GetHui")]
-        public async Task<IEnumerable<GearBoxReadDto>> GetListAsync()
+        [HttpGet("All-Data")]
+        public async Task<IEnumerable<GearBoxReadDto>> GetListGearBox()
         {
             return await Context.GetListAsync();
         }
-        
+
+        [HttpGet("One-Data{id}")]
+        public async Task<GearBoxReadDto> GetGearBoxId(int id)
+        {
+            return await Context.GetAsync(id);
+        }
 
     }
 }

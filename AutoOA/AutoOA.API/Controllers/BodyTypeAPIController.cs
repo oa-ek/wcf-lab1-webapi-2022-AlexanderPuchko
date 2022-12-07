@@ -3,7 +3,6 @@ using AutoOA.Repository.Dto.BodyTypeDto;
 using AutoOA.Repository.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using AutoOA.Repository.Dto.VehicleDto;
 
 namespace AutoOA.API.Controllers
 {
@@ -21,7 +20,7 @@ namespace AutoOA.API.Controllers
         }
 
         [HttpGet("All-Data")]
-        public async Task<IEnumerable<BodyTypeReadDto>> GetListAsync()
+        public async Task<IEnumerable<BodyTypeReadDto>> GetListBodyType()
         {
             return await Context.GetListAsync();
         }

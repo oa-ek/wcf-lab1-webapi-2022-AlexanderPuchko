@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using AutoOA.Core;
-using AutoOA.Repository.Dto.RegionDto;
 using AutoOA.Repository.Dto.SalesDataDto;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,12 +15,17 @@ namespace AutoOA.Repository.Repositories
             _ctx = ctx;
             _mapper = mapper;
         }
-
-        public async Task<IEnumerable<SalesDataReadDto>> GetListAsync()
+        //API
+        public async Task<IEnumerable<SalesDataReadDto>> GetListAsync() //Вивід всіх даних
         {
             return _mapper.Map<IEnumerable<SalesDataReadDto>>(await _ctx.SalesData.ToListAsync());
 
         }
+        public async Task<SalesDataReadDto> GetAsync(int id) //Вивід даних по id
+        {
+            return _mapper.Map<SalesDataReadDto>(await _ctx.SalesData.FirstAsync(x => x.SalesDataId == id));
+        }
+        //
 
         public SalesData GetDataByCreatedData(DateTime time)
         {

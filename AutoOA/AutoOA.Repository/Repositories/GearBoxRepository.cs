@@ -16,11 +16,17 @@ namespace AutoOA.Repository.Repositories
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<GearBoxReadDto>> GetListAsync()
+        //API
+        public async Task<IEnumerable<GearBoxReadDto>> GetListAsync() //Вивід всіх даних
         {
             return _mapper.Map<IEnumerable<GearBoxReadDto>>(await _ctx.GearBoxes.ToListAsync());
 
         }
+        public async Task<GearBoxReadDto> GetAsync(int id) //Вивід даних по id
+        {
+            return _mapper.Map<GearBoxReadDto>(await _ctx.GearBoxes.FirstAsync(x => x.GearBoxId == id));
+        }
+        //
 
         public async Task<GearBox> AddGearBoxAsync(GearBox gear)
         {

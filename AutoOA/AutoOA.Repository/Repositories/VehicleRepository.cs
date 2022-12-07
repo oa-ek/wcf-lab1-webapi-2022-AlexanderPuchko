@@ -19,11 +19,17 @@ namespace AutoOA.Repository.Repositories
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<VehicleReadDto>> GetListAsync()
+        //API
+        public async Task<IEnumerable<VehicleReadDto>> GetListAsync() //Вивід всіх даних
         {
             return _mapper.Map<IEnumerable<VehicleReadDto>>(await _ctx.Vehicles.ToListAsync());
 
         }
+        public async Task<VehicleReadDto> GetAsync(int id) //Вивід даних по id
+        {
+            return _mapper.Map<VehicleReadDto>(await _ctx.Vehicles.FirstAsync(x => x.VehicleId == id));
+        }
+        //
 
         public async Task<Vehicle> AddVehicleAsync(Vehicle vehicle)
         {

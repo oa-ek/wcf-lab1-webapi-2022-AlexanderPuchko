@@ -18,19 +18,17 @@ namespace AutoOA.API.Controllers
             _logger = logger;
             Context = context;
         }
-
-        [HttpGet]
-        public SalesDataRepository GetSalesDataRepository()
-        {
-            return Context;
-        }
-
-        [HttpGet("GetHui")]
-        public async Task<IEnumerable<SalesDataReadDto>> GetListAsync()
+        [HttpGet("All-Data")]
+        public async Task<IEnumerable<SalesDataReadDto>> GetListSalesData()
         {
             return await Context.GetListAsync();
         }
-        
+
+        [HttpGet("One-Data{id}")]
+        public async Task<SalesDataReadDto> GetSalesDataId(int id)
+        {
+            return await Context.GetAsync(id);
+        }
 
     }
 }

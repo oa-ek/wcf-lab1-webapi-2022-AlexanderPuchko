@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using AutoOA.Core;
-using AutoOA.Repository.Dto.BodyTypeDto;
 using AutoOA.Repository.Dto.DriveTypeDto;
 using Microsoft.EntityFrameworkCore;
 using DriveType = AutoOA.Core.DriveType;

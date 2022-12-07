@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using AutoOA.Core;
-using AutoOA.Repository.Dto.GearBoxDto;
 using AutoOA.Repository.Dto.RegionDto;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -21,12 +20,17 @@ namespace AutoOA.Repository.Repositories
             _ctx = ctx;
             _mapper = mapper;
         }
-
-        public async Task<IEnumerable<RegionReadDto>> GetListAsync()
+        //API
+        public async Task<IEnumerable<RegionReadDto>> GetListAsync() //Вивід всіх даних
         {
             return _mapper.Map<IEnumerable<RegionReadDto>>(await _ctx.Regions.ToListAsync());
 
         }
+        public async Task<RegionReadDto> GetAsync(int id) //Вивід даних по id
+        {
+            return _mapper.Map<RegionReadDto>(await _ctx.Regions.FirstAsync(x => x.RegionId == id));
+        }
+        //
 
         public async Task<Region> AddRegionAsync(Region region)
         {

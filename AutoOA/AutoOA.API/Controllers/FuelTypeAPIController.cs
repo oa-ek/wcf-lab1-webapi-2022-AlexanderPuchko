@@ -19,18 +19,17 @@ namespace AutoOA.API.Controllers
             Context = context;
         }
 
-        [HttpGet]
-        public FuelTypeRepository GetFuelTypeRepository()
-        {
-            return Context;
-        }
-
-        [HttpGet("GetHui")]
-        public async Task<IEnumerable<FuelTypeReadDto>> GetListAsync()
+        [HttpGet("All-Data")]
+        public async Task<IEnumerable<FuelTypeReadDto>> GetListFuelType()
         {
             return await Context.GetListAsync();
         }
-        
+
+        [HttpGet("One-Data{id}")]
+        public async Task<FuelTypeReadDto> GetFuelTypeId(int id)
+        {
+            return await Context.GetAsync(id);
+        }
 
     }
 }

@@ -15,12 +15,17 @@ namespace AutoOA.Repository.Repositories
             _ctx = ctx;
             _mapper = mapper;
         }
-
-        public async Task<IEnumerable<FuelTypeReadDto>> GetListAsync()
+        //API
+        public async Task<IEnumerable<FuelTypeReadDto>> GetListAsync() //Вивід всіх даних
         {
             return _mapper.Map<IEnumerable<FuelTypeReadDto>>(await _ctx.FuelTypes.ToListAsync());
 
         }
+        public async Task<FuelTypeReadDto> GetAsync(int id) //Вивід даних по id
+        {
+            return _mapper.Map<FuelTypeReadDto>(await _ctx.FuelTypes.FirstAsync(x => x.FuelTypeId == id));
+        }
+        //
 
         public async Task<FuelType> AddFuelTypeAsync(FuelType type)
         {

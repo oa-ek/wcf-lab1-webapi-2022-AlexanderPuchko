@@ -1,5 +1,4 @@
 ﻿using AutoOA.Core;
-using AutoOA.Repository.Dto.BodyTypeDto;
 using AutoOA.Repository.Dto.DriveTypeDto;
 using AutoOA.Repository.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +19,7 @@ namespace AutoOA.API.Controllers
             Context = context;
         }
         [HttpGet("All-Data")]
-        public async Task<IEnumerable<DriveTypeReadDto>> GetListAsync()
+        public async Task<IEnumerable<DriveTypeReadDto>> GetListDriveType()
         {
             return await Context.GetListAsync();
         }
