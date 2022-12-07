@@ -27,7 +27,7 @@ namespace AutoOA.API.Controllers
         }
 
         [HttpGet("One-Data{id}")]
-        public async Task<BodyTypeReadDto> GetBodyTypeById(int id)
+        public async Task<BodyTypeReadDto> GetBodyTypeId(int id)
         {
             return await Context.GetAsync(id);
         }

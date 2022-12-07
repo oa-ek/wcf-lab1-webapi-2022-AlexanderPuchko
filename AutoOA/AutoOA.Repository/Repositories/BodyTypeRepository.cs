@@ -23,7 +23,7 @@ namespace AutoOA.Repository.Repositories
         }
         public async Task<BodyTypeReadDto> GetAsync(int id) //Вивід даних по id
         {
-            return _mapper.Map<BodyTypeReadDto>(await _ctx.BodyTypes.FirstAsync());
+            return _mapper.Map<BodyTypeReadDto>(await _ctx.BodyTypes.FirstAsync(x => x.BodyTypeId == id));
         }
         //
         public async Task<BodyType> AddBodyTypeAsync(BodyType type)
