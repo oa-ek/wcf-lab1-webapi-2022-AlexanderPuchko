@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoOA.Core;
+using AutoOA.Repository.Dto.BodyTypeDto;
 using AutoOA.Repository.Dto.DriveTypeDto;
 using Microsoft.EntityFrameworkCore;
 using DriveType = AutoOA.Core.DriveType;
@@ -16,13 +17,17 @@ namespace AutoOA.Repository.Repositories
             _ctx = ctx;
             _mapper = mapper;
         }
-
-        public async Task<IEnumerable<DriveTypeReadDto>> GetListAsync()
+        //API
+        public async Task<IEnumerable<DriveTypeReadDto>> GetListAsync() //Вивід всіх даних
         {
             return _mapper.Map<IEnumerable<DriveTypeReadDto>>(await _ctx.DriveTypes.ToListAsync());
 
         }
-
+        public async Task<DriveTypeReadDto> GetAsync(int id) //Вивід даних по id
+        {
+            return _mapper.Map<DriveTypeReadDto>(await _ctx.DriveTypes.FirstAsync(x => x.DriveTypeId == id));
+        }
+        //
         public async Task<DriveType> AddDriveTypeAsync(DriveType type)
         {
             _ctx.DriveTypes.Add(type);

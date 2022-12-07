@@ -1,4 +1,5 @@
 ﻿using AutoOA.Core;
+using AutoOA.Repository.Dto.BodyTypeDto;
 using AutoOA.Repository.Dto.DriveTypeDto;
 using AutoOA.Repository.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -18,19 +19,17 @@ namespace AutoOA.API.Controllers
             _logger = logger;
             Context = context;
         }
-
-        [HttpGet]
-        public DriveTypeRepository GetDriveTypeRepository()
-        {
-            return Context;
-        }
-
-        [HttpGet("GetHui")]
+        [HttpGet("All-Data")]
         public async Task<IEnumerable<DriveTypeReadDto>> GetListAsync()
         {
             return await Context.GetListAsync();
         }
-        
+
+        [HttpGet("One-Data{id}")]
+        public async Task<DriveTypeReadDto> GetDriveTypeId(int id)
+        {
+            return await Context.GetAsync(id);
+        }
 
     }
 }
