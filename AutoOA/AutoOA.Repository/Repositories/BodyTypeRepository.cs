@@ -15,13 +15,17 @@ namespace AutoOA.Repository.Repositories
             _ctx = ctx;
             _mapper = mapper;
         }
-
-        public async Task<IEnumerable<BodyTypeReadDto>> GetListAsync()
+        //API
+        public async Task<IEnumerable<BodyTypeReadDto>> GetListAsync() //Вивід всіх даних
         {
             return _mapper.Map<IEnumerable<BodyTypeReadDto>>(await _ctx.BodyTypes.ToListAsync());
 
         }
-
+        public async Task<BodyTypeReadDto> GetAsync(int id) //Вивід даних по id
+        {
+            return _mapper.Map<BodyTypeReadDto>(await _ctx.BodyTypes.FirstAsync());
+        }
+        //
         public async Task<BodyType> AddBodyTypeAsync(BodyType type)
         {
             _ctx.BodyTypes.Add(type);

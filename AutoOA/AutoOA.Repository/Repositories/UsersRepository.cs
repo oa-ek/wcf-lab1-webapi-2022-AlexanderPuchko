@@ -27,7 +27,6 @@ namespace AutoOA.Repository.Repositories
         public async Task<IEnumerable<UserReadDto>> GetListAsync()
         {
             return _mapper.Map<IEnumerable<UserReadDto>>(await _ctx.Users.ToListAsync());
-
         }
 
         public async Task<User> CreateUserAsync(string? firstName, string? lastName, string? password, string? email)

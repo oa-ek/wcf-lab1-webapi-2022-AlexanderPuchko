@@ -3,6 +3,7 @@ using AutoOA.Repository.Dto.BodyTypeDto;
 using AutoOA.Repository.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using AutoOA.Repository.Dto.VehicleDto;
 
 namespace AutoOA.API.Controllers
 {
@@ -19,18 +20,17 @@ namespace AutoOA.API.Controllers
             Context = context;
         }
 
-        [HttpGet]
-        public BodyTypeRepository GetBodyTypeRepository()
-        {
-            return Context;
-        }
-
-        [HttpGet("Вивід")]
+        [HttpGet("All-Data")]
         public async Task<IEnumerable<BodyTypeReadDto>> GetListAsync()
         {
             return await Context.GetListAsync();
         }
-        
+
+        [HttpGet("One-Data{id}")]
+        public async Task<BodyTypeReadDto> GetBodyTypeById(int id)
+        {
+            return await Context.GetAsync(id);
+        }
 
     }
 }
