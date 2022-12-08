@@ -30,7 +30,7 @@ namespace AutoOA.Repository.Repositories
         {
             return _mapper.Map<RegionReadDto>(await _ctx.Regions.FirstAsync(x => x.RegionId == id));
         }
-        public async Task<int> CreateAsync(RegionCreateDto createDto)
+        public async Task<int> CreateAsync(RegionCreateDto createDto) //Створення даних
         {
             var data = await _ctx.Regions.AddAsync(new Region { RegionName = createDto.RegionName });
             await _ctx.SaveChangesAsync();

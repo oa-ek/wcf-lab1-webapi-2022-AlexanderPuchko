@@ -26,7 +26,7 @@ namespace AutoOA.Repository.Repositories
         {
             return _mapper.Map<DriveTypeReadDto>(await _ctx.DriveTypes.FirstAsync(x => x.DriveTypeId == id));
         }
-        public async Task<int> CreateAsync(DriveTypeCreateDto createDto)
+        public async Task<int> CreateAsync(DriveTypeCreateDto createDto) //Створення даних
         {
             var data = await _ctx.DriveTypes.AddAsync(new DriveType { DriveTypeName = createDto.DriveTypeName });
             await _ctx.SaveChangesAsync();

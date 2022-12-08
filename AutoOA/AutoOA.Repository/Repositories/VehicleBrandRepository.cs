@@ -25,6 +25,13 @@ namespace AutoOA.Repository.Repositories
         {
             return _mapper.Map<VehicleBrandReadDto>(await _ctx.VehicleBrands.FirstAsync(x => x.VehicleBrandId == id));
         }
+        public async Task<int> CreateAsync(VehicleBrandCreateDto createDto) //Створення даних
+        {
+            var data = await _ctx.VehicleBrands.AddAsync(new VehicleBrand { VehicleBrandName = createDto.VehicleBrandName });
+            await _ctx.SaveChangesAsync();
+            return data.Entity.VehicleBrandId;
+        }
+
         //
         public async Task<VehicleBrand> AddVehicleBrandAsync(VehicleBrand type)
         {

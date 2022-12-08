@@ -26,6 +26,13 @@ namespace AutoOA.Repository.Repositories
         {
             return _mapper.Map<VehicleModelReadDto>(await _ctx.VehicleModels.FirstAsync(x => x.VehicleModelId == id));
         }
+        public async Task<int> CreateAsync(VehicleModelCreateDto createDto) //Створення даних
+        {
+            var data = await _ctx.VehicleModels.AddAsync(new VehicleModel {VehicleModelName = createDto.VehicleModelName});
+            await _ctx.SaveChangesAsync();
+            return data.Entity.VehicleModelId;
+        }
+
         //
 
         public async Task<VehicleModel> AddVehicleModelAsync(VehicleModel model)

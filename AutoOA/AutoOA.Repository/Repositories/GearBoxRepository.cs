@@ -26,7 +26,7 @@ namespace AutoOA.Repository.Repositories
         {
             return _mapper.Map<GearBoxReadDto>(await _ctx.GearBoxes.FirstAsync(x => x.GearBoxId == id));
         }
-        public async Task<int> CreateAsync(GearBoxCreateDto createDto)
+        public async Task<int> CreateAsync(GearBoxCreateDto createDto) //Створення даних
         {
             var data = await _ctx.GearBoxes.AddAsync(new GearBox { GearBoxName = createDto.GearBoxName });
             await _ctx.SaveChangesAsync();
