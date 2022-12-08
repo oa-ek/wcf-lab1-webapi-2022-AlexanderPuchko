@@ -12,11 +12,13 @@ namespace AutoOA.API.Controllers
     {
         private readonly ILogger<VehicleBrandAPIController> _logger;
         private readonly VehicleBrandRepository Context;
+        private readonly AutoOADbContext _ctx;
 
-        public VehicleBrandAPIController(ILogger<VehicleBrandAPIController> logger, VehicleBrandRepository context)
+        public VehicleBrandAPIController(ILogger<VehicleBrandAPIController> logger, VehicleBrandRepository context, AutoOADbContext ctx)
         {
             _logger = logger;
             Context = context;
+            _ctx = ctx;
         }
 
         [HttpGet("All-Data")]
@@ -32,12 +34,30 @@ namespace AutoOA.API.Controllers
         }
 
         [HttpPost("Create-Data")]
-        public async Task<int> Create(VehicleBrandCreateDto brandDto)
+        public async Task<int> CreateVehicleBrand(VehicleBrandCreateDto brandDto)
         {
             return await Context.CreateAsync(brandDto);
         }
 
+        [HttpPut("Update-Data{id}")]
+        public async Task PutVehicleBrand(int id, [FromBody] VehicleBrandCreateDto brandDto)
+        {
+            await Context.Update(id, brandDto);
+        }
 
+        [HttpDelete("Delete-Data{id}")]
+        public async Task<IActionResult> DeleteVehicleBrand(int id)
+        {
+            var item = await _ctx.VehicleBrands.FindAsync(id);
+
+            if (item is null)
+            {
+                return NotFound();
+            }
+            await Context.DeleteVehicleBrandAsync(id);
+
+            return NoContent();
+        }
 
     }
 }

@@ -28,9 +28,7 @@ namespace AutoOA.Repository.Repositories
         {
             return _mapper.Map<VehicleReadDto>(await _ctx.Vehicles.FirstAsync(x => x.VehicleId == id));
         }
-
-        //
-
+        
         public async Task<Vehicle> AddVehicleAsync(Vehicle vehicle)
         {
             _ctx.Vehicles.Add(vehicle);
@@ -45,6 +43,69 @@ namespace AutoOA.Repository.Repositories
                 Include(x => x.SalesData).
                 FirstOrDefault(x => x.VehicleModel.VehicleModelName == vehicle.VehicleModel.VehicleModelName);
         }
+        public async Task UpdateAsync(int id, VehicleReadDto vehicleDto, string regionName, string bodyTypeName,
+            string vehicleBrandName, string vehicleModelName, string gearBoxName, string driveTypeName, string fuelTypeName)
+        {
+            var vehicle = _ctx.Vehicles.Include(x => x.VehicleModel).ThenInclude(x => x.VehicleBrand).
+                 Include(x => x.BodyType).
+                 Include(x => x.DriveType).
+                 Include(x => x.FuelType).
+                 Include(x => x.GearBox).
+                 Include(x => x.Region).
+                 Include(x => x.User).
+                 Include(x => x.SalesData).FirstOrDefault(x => x.VehicleId == vehicleDto.VehicleId);
+
+            if (vehicle.Region.RegionName != regionName)
+                vehicle.Region = _ctx.Regions.FirstOrDefault(x => x.RegionName == regionName);
+            if (vehicle.BodyType.BodyTypeName != bodyTypeName)
+                vehicle.BodyType = _ctx.BodyTypes.FirstOrDefault(x => x.BodyTypeName == bodyTypeName);
+            if (vehicle.VehicleModel.VehicleModelName != vehicleModelName)
+                vehicle.VehicleModel = _ctx.VehicleModels.FirstOrDefault(x => x.VehicleModelName == vehicleModelName);
+            if (vehicle.DriveType.DriveTypeName != driveTypeName)
+                vehicle.DriveType = _ctx.DriveTypes.FirstOrDefault(x => x.DriveTypeName == driveTypeName);
+            if (vehicle.StateNumber != vehicleDto.StateNumber)
+                vehicle.StateNumber = vehicleDto.StateNumber.ToUpper();
+            if (vehicle.ProductionYear != vehicleDto.ProductionYear)
+                vehicle.ProductionYear = vehicleDto.ProductionYear;
+            if (vehicle.VehicleModel.VehicleBrand.VehicleBrandName != vehicleBrandName)
+                vehicle.VehicleModel.VehicleBrand = _ctx.VehicleBrands.FirstOrDefault(x => x.VehicleBrandName == vehicleBrandName);
+            if (vehicle.GearBox.GearBoxName != gearBoxName)
+                vehicle.GearBox = _ctx.GearBoxes.FirstOrDefault(x => x.GearBoxName == gearBoxName);
+            if (vehicle.NumberOfSeats != vehicleDto.NumberOfSeats)
+                vehicle.NumberOfSeats = vehicleDto.NumberOfSeats;
+            if (vehicle.NumberOfDoors != vehicleDto.NumberOfDoors)
+                vehicle.NumberOfDoors = vehicleDto.NumberOfDoors;
+            if (vehicle.Price_USD != vehicleDto.Price_USD)
+                vehicle.Price_USD = vehicleDto.Price_USD;
+            if (vehicle.Price_UAH != vehicleDto.Price_UAH)
+                vehicle.Price_UAH = vehicleDto.Price_USD * 37;
+            if (vehicle.Price_EUR != vehicleDto.Price_EUR)
+                vehicle.Price_EUR = vehicleDto.Price_USD * 0.9984m;
+            if (vehicle.isNew != vehicleDto.isNew)
+                vehicle.isNew = vehicleDto.isNew;
+            if (vehicle.Mileage != vehicleDto.Mileage)
+                vehicle.Mileage = vehicleDto.Mileage;
+            if (vehicle.VehicleIconPath != vehicleDto.VehicleIconPath)
+                vehicle.VehicleIconPath = vehicleDto.VehicleIconPath;
+            if (vehicle.FuelType.FuelTypeName != fuelTypeName)
+                vehicle.FuelType = _ctx.FuelTypes.FirstOrDefault(x => x.FuelTypeName == fuelTypeName);
+            if (vehicle.Color != vehicleDto.Color)
+                vehicle.Color = vehicleDto.Color;
+            if (vehicle.Description != vehicleDto.Description)
+                vehicle.Description = vehicleDto.Description;
+
+            vehicle.SalesData.UpdatedOn = DateTime.Now;
+            _ctx.SaveChanges();
+        }
+        public async Task DeleteVehicleAsync(int id)
+        {
+            _ctx.Remove(GetVehicle(id));
+            await _ctx.SaveChangesAsync();
+        }
+
+        //
+
+
 
         public Vehicle GetVehicle(int id)
         {
@@ -111,65 +172,7 @@ namespace AutoOA.Repository.Repositories
             return vehicleDto;
         }
 
-        public async Task UpdateAsync(VehicleReadDto vehicleDto, string regionName, string bodyTypeName,
-            string vehicleBrandName, string vehicleModelName, string gearBoxName, string driveTypeName, string fuelTypeName )
-        {
-            var vehicle = _ctx.Vehicles.Include(x => x.VehicleModel).ThenInclude(x => x.VehicleBrand).
-                 Include(x => x.BodyType).
-                 Include(x => x.DriveType).
-                 Include(x => x.FuelType).
-                 Include(x => x.GearBox).
-                 Include(x => x.Region).
-                 Include(x => x.User).
-                 Include(x => x.SalesData).FirstOrDefault(x => x.VehicleId == vehicleDto.VehicleId);
+        
 
-            if (vehicle.Region.RegionName != regionName)
-                vehicle.Region = _ctx.Regions.FirstOrDefault(x => x.RegionName == regionName);
-            if (vehicle.BodyType.BodyTypeName != bodyTypeName)
-                vehicle.BodyType = _ctx.BodyTypes.FirstOrDefault(x => x.BodyTypeName == bodyTypeName);
-            if (vehicle.VehicleModel.VehicleModelName != vehicleModelName)
-                vehicle.VehicleModel = _ctx.VehicleModels.FirstOrDefault(x => x.VehicleModelName == vehicleModelName);
-            if (vehicle.DriveType.DriveTypeName != driveTypeName)
-                vehicle.DriveType= _ctx.DriveTypes.FirstOrDefault(x => x.DriveTypeName == driveTypeName);
-            if (vehicle.StateNumber != vehicleDto.StateNumber)
-                vehicle.StateNumber = vehicleDto.StateNumber.ToUpper();
-            if (vehicle.ProductionYear != vehicleDto.ProductionYear)
-                vehicle.ProductionYear = vehicleDto.ProductionYear;
-            if (vehicle.VehicleModel.VehicleBrand.VehicleBrandName != vehicleBrandName)
-                vehicle.VehicleModel.VehicleBrand = _ctx.VehicleBrands.FirstOrDefault(x => x.VehicleBrandName == vehicleBrandName);
-            if (vehicle.GearBox.GearBoxName != gearBoxName)
-                vehicle.GearBox = _ctx.GearBoxes.FirstOrDefault(x => x.GearBoxName == gearBoxName);
-            if (vehicle.NumberOfSeats != vehicleDto.NumberOfSeats)
-                vehicle.NumberOfSeats = vehicleDto.NumberOfSeats;
-            if (vehicle.NumberOfDoors != vehicleDto.NumberOfDoors)
-                vehicle.NumberOfDoors = vehicleDto.NumberOfDoors;
-            if (vehicle.Price_USD != vehicleDto.Price_USD)
-                vehicle.Price_USD = vehicleDto.Price_USD;
-            if (vehicle.Price_UAH != vehicleDto.Price_UAH)
-                vehicle.Price_UAH = vehicleDto.Price_USD * 37;
-            if (vehicle.Price_EUR != vehicleDto.Price_EUR)
-                vehicle.Price_EUR = vehicleDto.Price_USD * 0.9984m;
-            if (vehicle.isNew != vehicleDto.isNew)
-                vehicle.isNew = vehicleDto.isNew;
-            if (vehicle.Mileage != vehicleDto.Mileage)
-                vehicle.Mileage = vehicleDto.Mileage;
-            if (vehicle.VehicleIconPath != vehicleDto.VehicleIconPath)
-                vehicle.VehicleIconPath = vehicleDto.VehicleIconPath;
-            if (vehicle.FuelType.FuelTypeName != fuelTypeName)
-                vehicle.FuelType = _ctx.FuelTypes.FirstOrDefault(x => x.FuelTypeName == fuelTypeName);
-            if (vehicle.Color != vehicleDto.Color)
-                vehicle.Color = vehicleDto.Color;
-            if (vehicle.Description != vehicleDto.Description)
-                vehicle.Description = vehicleDto.Description;
-
-            vehicle.SalesData.UpdatedOn = DateTime.Now;
-            _ctx.SaveChanges();
-        }
-
-        public async Task DeleteVehicleAsync(int id)
-        {
-            _ctx.Remove(GetVehicle(id));
-            await _ctx.SaveChangesAsync();
-        }
     }
 }

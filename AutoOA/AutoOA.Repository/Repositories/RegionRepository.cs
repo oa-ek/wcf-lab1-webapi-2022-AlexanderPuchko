@@ -36,6 +36,17 @@ namespace AutoOA.Repository.Repositories
             await _ctx.SaveChangesAsync();
             return data.Entity.RegionId;
         }
+        public async Task Update(int id, RegionCreateDto regionDto)
+        {
+            var region = _ctx.Regions.FirstOrDefault(x => x.RegionId == id);
+            region.RegionName = regionDto.RegionName;
+            await _ctx.SaveChangesAsync();
+        }
+        public async Task DeleteRegionAsync(int id)
+        {
+            _ctx.Remove(GetRegion(id));
+            await _ctx.SaveChangesAsync();
+        }
 
         //
 
@@ -60,12 +71,6 @@ namespace AutoOA.Repository.Repositories
         public Region GetRegionByName(string name)
         {
             return _ctx.Regions.FirstOrDefault(x => x.RegionName == name);
-        }
-
-        public async Task DeleteRegionAsync(int id)
-        {
-            _ctx.Remove(GetRegion(id));
-            await _ctx.SaveChangesAsync();
-        }
+        }        
     }
 }

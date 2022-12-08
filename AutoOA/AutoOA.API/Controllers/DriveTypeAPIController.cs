@@ -12,11 +12,13 @@ namespace AutoOA.API.Controllers
     {
         private readonly ILogger<DriveTypeAPIController> _logger;
         private readonly DriveTypeRepository Context;
+        private readonly AutoOADbContext _ctx;
 
-        public DriveTypeAPIController(ILogger<DriveTypeAPIController> logger, DriveTypeRepository context)
+        public DriveTypeAPIController(ILogger<DriveTypeAPIController> logger, DriveTypeRepository context, AutoOADbContext ctx)
         {
             _logger = logger;
             Context = context;
+            _ctx = ctx;
         }
         [HttpGet("All-Data")]
         public async Task<IEnumerable<DriveTypeReadDto>> GetListDriveType()
@@ -34,6 +36,24 @@ namespace AutoOA.API.Controllers
         public async Task<int> CreateDriveType(DriveTypeCreateDto bodyType)
         {
             return await Context.CreateAsync(bodyType);
+        }
+        [HttpPut("Update-Data{id}")]
+        public async Task PutDriveType(int id, [FromBody] DriveTypeCreateDto bodyType)
+        {
+            await Context.Update(id, bodyType);
+        }
+        [HttpDelete("Delete-Data{id}")]
+        public async Task<IActionResult> DeleteDriveType(int id)
+        {
+            var item = await _ctx.DriveTypes.FindAsync(id);
+
+            if (item is null)
+            {
+                return NotFound();
+            }
+            await Context.DeleteDriveTypeAsync(id);
+
+            return NoContent();
         }
     }
 }

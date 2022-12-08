@@ -32,6 +32,17 @@ namespace AutoOA.Repository.Repositories
             await _ctx.SaveChangesAsync();
             return data.Entity.DriveTypeId;
         }
+        public async Task Update(int id, DriveTypeCreateDto driveTypeDto)//Оновлення даних по id
+        {
+            var driveType = _ctx.DriveTypes.FirstOrDefault(x => x.DriveTypeId == id);
+            driveType.DriveTypeName = driveTypeDto.DriveTypeName;
+            await _ctx.SaveChangesAsync();
+        }
+        public async Task DeleteDriveTypeAsync(int id)//Видалення даних по id
+        {
+            _ctx.Remove(GetDriveType(id));
+            await _ctx.SaveChangesAsync();
+        }
 
         //
         public async Task<DriveType> AddDriveTypeAsync(DriveType type)
@@ -57,10 +68,6 @@ namespace AutoOA.Repository.Repositories
             return _ctx.DriveTypes.FirstOrDefault(x => x.DriveTypeName == name);
         }
 
-        public async Task DeleteDriveTypeAsync(int id)
-        {
-            _ctx.Remove(GetDriveType(id));
-            await _ctx.SaveChangesAsync();
-        }
+        
     }
 }

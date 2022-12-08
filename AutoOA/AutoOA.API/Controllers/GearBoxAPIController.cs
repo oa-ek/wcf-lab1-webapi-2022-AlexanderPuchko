@@ -12,11 +12,13 @@ namespace AutoOA.API.Controllers
     {
         private readonly ILogger<GearBoxAPIController> _logger;
         private readonly GearBoxRepository Context;
+        private readonly AutoOADbContext _ctx;
 
-        public GearBoxAPIController(ILogger<GearBoxAPIController> logger, GearBoxRepository context)
+        public GearBoxAPIController(ILogger<GearBoxAPIController> logger, GearBoxRepository context, AutoOADbContext ctx)
         {
             _logger = logger;
             Context = context;
+            _ctx = ctx;
         }
 
 
@@ -38,5 +40,24 @@ namespace AutoOA.API.Controllers
             return await Context.CreateAsync(gearType);
         }
 
+        [HttpPut("Update-Data{id}")]
+        public async Task PutGearBox(int id, [FromBody] GearBoxCreateDto gearType)
+        {
+            await Context.Update(id, gearType);
+        }
+
+        [HttpDelete("Delete-Data{id}")]
+        public async Task<IActionResult> DeleteGearBox(int id)
+        {
+            var item = await _ctx.GearBoxes.FindAsync(id);
+
+            if (item is null)
+            {
+                return NotFound();
+            }
+            await Context.DeleteGearBoxAsync(id);
+
+            return NoContent();
+        }
     }
 }

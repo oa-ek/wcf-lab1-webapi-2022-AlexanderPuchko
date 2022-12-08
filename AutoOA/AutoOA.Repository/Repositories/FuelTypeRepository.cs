@@ -31,7 +31,17 @@ namespace AutoOA.Repository.Repositories
             await _ctx.SaveChangesAsync();
             return data.Entity.FuelTypeId;
         }
-
+        public async Task Update(int id, FuelTypeCreateDto fuelTypeDto)//Оновлення даних по id
+        {
+            var fuelType = _ctx.FuelTypes.FirstOrDefault(x => x.FuelTypeId == id);
+            fuelType.FuelTypeName = fuelTypeDto.FuelTypeName;
+            await _ctx.SaveChangesAsync();
+        }
+        public async Task DeleteFuelTypeAsync(int id)//Видалення даних по id
+        {
+            _ctx.Remove(GetFuelType(id));
+            await _ctx.SaveChangesAsync();
+        }
         //
 
         public async Task<FuelType> AddFuelTypeAsync(FuelType type)
@@ -57,10 +67,6 @@ namespace AutoOA.Repository.Repositories
             return _ctx.FuelTypes.FirstOrDefault(x => x.FuelTypeName == name);
         }
 
-        public async Task DeleteFuelTypeAsync(int id)
-        {
-            _ctx.Remove(GetFuelType(id));
-            await _ctx.SaveChangesAsync();
-        }
+        
     }
 }

@@ -32,7 +32,17 @@ namespace AutoOA.Repository.Repositories
             await _ctx.SaveChangesAsync();
             return data.Entity.VehicleModelId;
         }
-
+        public async Task Update(int id, VehicleModelCreateDto modelDto)
+        {
+            var model = _ctx.VehicleModels.FirstOrDefault(x => x.VehicleModelId == id);
+            model.VehicleModelName = modelDto.VehicleModelName;
+            await _ctx.SaveChangesAsync();
+        }
+        public async Task DeleteVehicleModelAsync(int id)
+        {
+            _ctx.Remove(GetVehicleModel(id));
+            await _ctx.SaveChangesAsync();
+        }
         //
 
         public async Task<VehicleModel> AddVehicleModelAsync(VehicleModel model)
@@ -58,10 +68,6 @@ namespace AutoOA.Repository.Repositories
             return modelList;
         }
 
-        public async Task DeleteVehicleModelAsync(int id)
-        {
-            _ctx.Remove(GetVehicleModel(id));
-            await _ctx.SaveChangesAsync();
-        }
+        
     }
 }

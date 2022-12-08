@@ -31,7 +31,17 @@ namespace AutoOA.Repository.Repositories
             await _ctx.SaveChangesAsync();
             return data.Entity.BodyTypeId;
         }
-
+        public async Task Update(int id, BodyTypeCreateDto bodyTypeDto) //Оновлення даних по id
+        {
+            var bodyType = _ctx.BodyTypes.FirstOrDefault(x => x.BodyTypeId == id);
+            bodyType.BodyTypeName = bodyTypeDto.BodyName;
+            await _ctx.SaveChangesAsync();
+        }
+        public async Task DeleteBodyTypeAsync(int id) //Видалення даних по id
+        {
+            _ctx.Remove(GetBodyType(id));
+            await _ctx.SaveChangesAsync();
+        } 
         //
         public async Task<BodyType> AddBodyTypeAsync(BodyType type)
         {
@@ -54,12 +64,6 @@ namespace AutoOA.Repository.Repositories
         public BodyType GetBodyTypeByName(string name)
         {
             return _ctx.BodyTypes.FirstOrDefault(x => x.BodyTypeName == name);
-        }
-
-        public async Task DeleteBodyTypeAsync(int id)
-        {
-            _ctx.Remove(GetBodyType(id));
-            await _ctx.SaveChangesAsync();
-        }        
+        }               
     }
 }

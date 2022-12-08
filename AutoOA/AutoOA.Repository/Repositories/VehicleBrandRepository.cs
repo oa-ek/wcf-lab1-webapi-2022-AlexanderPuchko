@@ -31,7 +31,17 @@ namespace AutoOA.Repository.Repositories
             await _ctx.SaveChangesAsync();
             return data.Entity.VehicleBrandId;
         }
-
+        public async Task Update(int id, VehicleBrandCreateDto brandDto)
+        {
+            var brand = _ctx.VehicleBrands.FirstOrDefault(x => x.VehicleBrandId == id);
+            brand.VehicleBrandName = brandDto.VehicleBrandName;
+            await _ctx.SaveChangesAsync();
+        }
+        public async Task DeleteVehicleBrandAsync(int id)
+        {
+            _ctx.Remove(GetVehicleBrand(id));
+            await _ctx.SaveChangesAsync();
+        }
         //
         public async Task<VehicleBrand> AddVehicleBrandAsync(VehicleBrand type)
         {
@@ -58,10 +68,6 @@ namespace AutoOA.Repository.Repositories
             return _ctx.VehicleBrands.FirstOrDefault(x => x.VehicleBrandName == name);
         }
 
-        public async Task DeleteVehicleBrandAsync(int id)
-        {
-            _ctx.Remove(GetVehicleBrand(id));
-            await _ctx.SaveChangesAsync();
-        }
+        
     }
 }

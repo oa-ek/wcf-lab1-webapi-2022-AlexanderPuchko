@@ -32,7 +32,17 @@ namespace AutoOA.Repository.Repositories
             await _ctx.SaveChangesAsync();
             return data.Entity.GearBoxId;
         }
-
+        public async Task Update(int id, GearBoxCreateDto gearBoxDto)
+        {
+            var gearBox = _ctx.GearBoxes.FirstOrDefault(x => x.GearBoxId == id);
+            gearBox.GearBoxName = gearBoxDto.GearBoxName;
+            await _ctx.SaveChangesAsync();
+        }
+        public async Task DeleteGearBoxAsync(int id)
+        {
+            _ctx.Remove(GetGearBox(id));
+            await _ctx.SaveChangesAsync();
+        }
         //
 
         public async Task<GearBox> AddGearBoxAsync(GearBox gear)
@@ -56,12 +66,6 @@ namespace AutoOA.Repository.Repositories
         public GearBox GetGearBoxByName(string name)
         {
             return _ctx.GearBoxes.FirstOrDefault(x => x.GearBoxName == name);
-        }
-
-        public async Task DeleteGearBoxAsync(int id)
-        {
-            _ctx.Remove(GetGearBox(id));
-            await _ctx.SaveChangesAsync();
         }
     }
 }

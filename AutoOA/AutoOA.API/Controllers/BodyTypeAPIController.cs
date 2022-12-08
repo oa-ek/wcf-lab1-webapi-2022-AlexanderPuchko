@@ -12,11 +12,13 @@ namespace AutoOA.API.Controllers
     {
         private readonly ILogger<BodyTypeAPIController> _logger;
         private readonly BodyTypeRepository Context;
+        private readonly AutoOADbContext _ctx;
 
-        public BodyTypeAPIController(ILogger<BodyTypeAPIController> logger, BodyTypeRepository context)
+        public BodyTypeAPIController(ILogger<BodyTypeAPIController> logger, BodyTypeRepository context, AutoOADbContext ctx)
         {
             _logger = logger;
             Context = context;
+            _ctx = ctx;
         }
 
         [HttpGet("All-Data")]
@@ -37,5 +39,24 @@ namespace AutoOA.API.Controllers
             return await Context.CreateAsync(bodyType);
         }
 
+        [HttpPut("Update-Data{id}")]
+        public async Task PutBodyType(int id, [FromBody] BodyTypeCreateDto bodyType)
+        {
+            await Context.Update(id, bodyType);
+        }
+
+        [HttpDelete("Delete-Data{id}")]
+        public async Task<IActionResult> DeleteBodyType(int id)
+        {
+            var item = await _ctx.BodyTypes.FindAsync(id);
+
+            if (item is null)
+            {
+                return NotFound();
+            }
+            await Context.DeleteBodyTypeAsync(id);
+
+            return NoContent();
+        }
     }
 }

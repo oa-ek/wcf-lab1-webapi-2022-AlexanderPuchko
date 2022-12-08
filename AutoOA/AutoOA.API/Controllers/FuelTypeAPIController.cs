@@ -12,11 +12,13 @@ namespace AutoOA.API.Controllers
     {
         private readonly ILogger<FuelTypeAPIController> _logger;
         private readonly FuelTypeRepository Context;
+        private readonly AutoOADbContext _ctx;
 
-        public FuelTypeAPIController(ILogger<FuelTypeAPIController> logger, FuelTypeRepository context)
+        public FuelTypeAPIController(ILogger<FuelTypeAPIController> logger, FuelTypeRepository context, AutoOADbContext ctx)
         {
             _logger = logger;
             Context = context;
+            _ctx = ctx;
         }
 
         [HttpGet("All-Data")]
@@ -35,6 +37,26 @@ namespace AutoOA.API.Controllers
         public async Task<int> CreateFuelType(FuelTypeCreateDto fuelType)
         {
             return await Context.CreateAsync(fuelType);
+        }
+
+        [HttpPut("Update-Data{id}")]
+        public async Task PutFuelType(int id, [FromBody] FuelTypeCreateDto fuelType)
+        {
+            await Context.Update(id, fuelType);
+        }
+
+        [HttpDelete("Delete-Data{id}")]
+        public async Task<IActionResult> DeleteFuelType(int id)
+        {
+            var item = await _ctx.FuelTypes.FindAsync(id);
+
+            if (item is null)
+            {
+                return NotFound();
+            }
+            await Context.DeleteFuelTypeAsync(id);
+
+            return NoContent();
         }
     }
 }

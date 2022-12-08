@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using AutoOA.Core;
-using AutoOA.Repository.Dto.RegionDto;
 using AutoOA.Repository.Dto.SalesDataDto;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +24,21 @@ namespace AutoOA.Repository.Repositories
         public async Task<SalesDataReadDto> GetAsync(int id) //Вивід даних по id
         {
             return _mapper.Map<SalesDataReadDto>(await _ctx.SalesData.FirstAsync(x => x.SalesDataId == id));
+        }
+        public async Task<int> CreateAsync(SalesDataCreateDto createDto) //Створення даних
+        {
+            var data = await _ctx.Regions.AddAsync(new Region { RegionName = createDto.RegionName });
+            await _ctx.SaveChangesAsync();
+            return data.Entity.RegionId;
+        }
+        public async Task Update(int id, SalesDataCreateDto salesDataDto)
+        {
+            var region = _ctx.SalesData.FirstOrDefault(x => x.SalesDataId == id);
+            await _ctx.SaveChangesAsync();
+        }
+        public async Task DeleteSalesDataAsync(int id)
+        {
+            await _ctx.SaveChangesAsync();
         }
         //
 

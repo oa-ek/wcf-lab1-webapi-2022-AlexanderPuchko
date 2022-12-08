@@ -12,11 +12,13 @@ namespace AutoOA.API.Controllers
     {
         private readonly ILogger<VehicleAPIController> _logger;
         private readonly VehicleRepository Context;
+        private readonly AutoOADbContext _ctx;
 
-        public VehicleAPIController(ILogger<VehicleAPIController> logger, VehicleRepository context)
+        public VehicleAPIController(ILogger<VehicleAPIController> logger, VehicleRepository context, AutoOADbContext ctx)
         {
             _logger = logger;
             Context = context;
+            _ctx = ctx;
         }
 
         [HttpGet("All-Data")]
@@ -37,5 +39,26 @@ namespace AutoOA.API.Controllers
             return await Context.AddVehicleAsync(vehicleDto);
         }
 
+        [HttpPut("{id}")]
+        public async Task PutVehicle(int id, [FromBody] VehicleReadDto vehicleDto, string regionName, string bodyTypeName,
+            string vehicleBrandName, string vehicleModelName, string gearBoxName, string driveTypeName, string fuelTypeName)
+        {
+            await Context.UpdateAsync(id, vehicleDto, regionName, bodyTypeName,
+             vehicleBrandName, vehicleModelName, gearBoxName, driveTypeName, fuelTypeName);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteVehicle(int id)
+        {
+            var item = await _ctx.Vehicles.FindAsync(id);
+
+            if (item is null)
+            {
+                return NotFound();
+            }
+            await Context.DeleteVehicleAsync(id);
+
+            return NoContent();
+        }
     }
 }
