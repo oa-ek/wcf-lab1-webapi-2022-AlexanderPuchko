@@ -6,8 +6,8 @@ namespace AutoOA.Repository.Dto.FuelTypeDto
     {
         public int FuelTypeId { get; set; }
         public string? FuelTypeName { get; set; }
-        public string? IconPath { get; set; }
-        
+        public string? IconPath { get; set; } = @"\Images\fuelTypeIcon.png";
+
         public ICollection<Vehicle>? Vehicle { get; set; }
     }
 }

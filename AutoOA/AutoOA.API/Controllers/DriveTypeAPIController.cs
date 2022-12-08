@@ -30,5 +30,10 @@ namespace AutoOA.API.Controllers
             return await Context.GetAsync(id);
         }
 
+        [HttpPost("Create-Data")]
+        public async Task<int> CreateDriveType(DriveTypeCreateDto bodyType)
+        {
+            return await Context.CreateAsync(bodyType);
+        }
     }
 }

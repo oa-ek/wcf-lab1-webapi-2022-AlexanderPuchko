@@ -25,6 +25,13 @@ namespace AutoOA.Repository.Repositories
         {
             return _mapper.Map<FuelTypeReadDto>(await _ctx.FuelTypes.FirstAsync(x => x.FuelTypeId == id));
         }
+        public async Task<int> CreateAsync(FuelTypeCreateDto createDto)
+        {
+            var data = await _ctx.FuelTypes.AddAsync(new FuelType { FuelTypeName = createDto.FuelTypeName });
+            await _ctx.SaveChangesAsync();
+            return data.Entity.FuelTypeId;
+        }
+
         //
 
         public async Task<FuelType> AddFuelTypeAsync(FuelType type)

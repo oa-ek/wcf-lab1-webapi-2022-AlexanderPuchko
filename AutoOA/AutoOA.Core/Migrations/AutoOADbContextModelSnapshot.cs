@@ -162,7 +162,7 @@ namespace AutoOA.Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FuelTypeId"), 1L, 1);
 
-                    b.Property<string>("FuelName")
+                    b.Property<string>("FuelTypeName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IconPath")
@@ -176,55 +176,55 @@ namespace AutoOA.Core.Migrations
                         new
                         {
                             FuelTypeId = 1,
-                            FuelName = "Дизель",
+                            FuelTypeName = "Дизель",
                             IconPath = "\\Images\\fuelTypeIcon.png"
                         },
                         new
                         {
                             FuelTypeId = 2,
-                            FuelName = "Бензин",
+                            FuelTypeName = "Бензин",
                             IconPath = "\\Images\\fuelTypeIcon.png"
                         },
                         new
                         {
                             FuelTypeId = 3,
-                            FuelName = "Газ",
+                            FuelTypeName = "Газ",
                             IconPath = "\\Images\\fuelTypeIcon.png"
                         },
                         new
                         {
                             FuelTypeId = 4,
-                            FuelName = "Газ / Бензин",
+                            FuelTypeName = "Газ / Бензин",
                             IconPath = "\\Images\\fuelTypeIcon.png"
                         },
                         new
                         {
                             FuelTypeId = 5,
-                            FuelName = "Гібрид",
+                            FuelTypeName = "Гібрид",
                             IconPath = "\\Images\\fuelTypeIcon.png"
                         },
                         new
                         {
                             FuelTypeId = 6,
-                            FuelName = "Електро",
+                            FuelTypeName = "Електро",
                             IconPath = "\\Images\\fuelTypeIcon.png"
                         },
                         new
                         {
                             FuelTypeId = 7,
-                            FuelName = "Інше",
+                            FuelTypeName = "Інше",
                             IconPath = "\\Images\\fuelTypeIcon.png"
                         },
                         new
                         {
                             FuelTypeId = 8,
-                            FuelName = "Газ метан",
+                            FuelTypeName = "Газ метан",
                             IconPath = "\\Images\\fuelTypeIcon.png"
                         },
                         new
                         {
                             FuelTypeId = 9,
-                            FuelName = "Газ пропан-бутан",
+                            FuelTypeName = "Газ пропан-бутан",
                             IconPath = "\\Images\\fuelTypeIcon.png"
                         });
                 });

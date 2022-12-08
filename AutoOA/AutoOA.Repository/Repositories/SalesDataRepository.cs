@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoOA.Core;
+using AutoOA.Repository.Dto.RegionDto;
 using AutoOA.Repository.Dto.SalesDataDto;
 using Microsoft.EntityFrameworkCore;
 

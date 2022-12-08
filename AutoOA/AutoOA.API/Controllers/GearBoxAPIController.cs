@@ -32,5 +32,11 @@ namespace AutoOA.API.Controllers
             return await Context.GetAsync(id);
         }
 
+        [HttpPost("Create-Data")]
+        public async Task<int> CreateGearBox(GearBoxCreateDto gearType)
+        {
+            return await Context.CreateAsync(gearType);
+        }
+
     }
 }

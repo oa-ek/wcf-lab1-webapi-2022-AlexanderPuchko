@@ -25,6 +25,13 @@ namespace AutoOA.Repository.Repositories
         {
             return _mapper.Map<BodyTypeReadDto>(await _ctx.BodyTypes.FirstAsync(x => x.BodyTypeId == id));
         }
+        public async Task<int> CreateAsync(BodyTypeCreateDto createDto) //Створення даних
+        {
+            var data = await _ctx.BodyTypes.AddAsync(new BodyType { BodyTypeName = createDto.BodyName });
+            await _ctx.SaveChangesAsync();
+            return data.Entity.BodyTypeId;
+        }
+
         //
         public async Task<BodyType> AddBodyTypeAsync(BodyType type)
         {

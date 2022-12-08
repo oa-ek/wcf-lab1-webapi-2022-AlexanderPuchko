@@ -31,5 +31,11 @@ namespace AutoOA.API.Controllers
             return await Context.GetAsync(id);
         }
 
+        [HttpPost("Create-Data")]
+        public async Task<Vehicle> CreateVehicle(Vehicle vehicleDto)
+        {
+            return await Context.AddVehicleAsync(vehicleDto);
+        }
+
     }
 }
