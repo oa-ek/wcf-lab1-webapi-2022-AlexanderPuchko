@@ -8,5 +8,10 @@ namespace BlazorAutoOA.Shared
 {
     public class FuelType
     {
+        public int FuelTypeId { get; set; }
+        public string? FuelTypeName { get; set; }
+        public string? IconPath { get; set; } = @"\Images\fuelTypeIcon.png";
+
+        public virtual ICollection<Vehicle>? Vehicle { get; set; }
     }
 }

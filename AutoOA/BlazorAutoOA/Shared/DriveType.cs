@@ -8,5 +8,9 @@ namespace BlazorAutoOA.Shared
 {
     public class DriveType
     {
+        public int DriveTypeId { get; set; }
+        public string? DriveTypeName { get; set; }
+
+        public virtual ICollection<Vehicle>? Vehicle { get; set; }
     }
 }
