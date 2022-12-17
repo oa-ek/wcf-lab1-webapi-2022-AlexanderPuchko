@@ -25,8 +25,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAutoOA.Server", "BlazorAutoOA\Server\BlazorAutoOA.Server.csproj", "{1A46AE21-C939-49BF-B11F-36664C52A996}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAutoOA.Client", "BlazorAutoOA\Client\BlazorAutoOA.Client.csproj", "{0E590853-A170-4ED6-BA18-DD6BA1BFC809}"
+	ProjectSection(ProjectDependencies) = postProject
+		{70E2244F-5F47-4375-845A-FD1E78CFAD8D} = {70E2244F-5F47-4375-845A-FD1E78CFAD8D}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAutoOA.Shared", "BlazorAutoOA\Shared\BlazorAutoOA.Shared.csproj", "{491A3B57-E629-4E79-B970-2616FBCEAB06}"
+	ProjectSection(ProjectDependencies) = postProject
+		{70E2244F-5F47-4375-845A-FD1E78CFAD8D} = {70E2244F-5F47-4375-845A-FD1E78CFAD8D}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

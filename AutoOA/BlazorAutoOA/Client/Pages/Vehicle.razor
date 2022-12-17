@@ -1,0 +1,97 @@
+﻿@page "/vehicle"
+@inject IVehicleServices VehicleService
+@inject NavigationManager NavigationManager
+
+<PageTitle>Vehicle</PageTitle>
+
+<h3>Vehicle</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>VehicleId</th>
+            <th>RegionId</th>
+            <th>Region</th>
+            <th>BodyTypeId</th>
+            <th>BodyType</th>
+            <th>VehicleModelId</th>
+            <th>VehicleModel</th>
+            <th>ProductionYear</th>
+            <th>GearBoxId</th>
+            <th>GearBox</th>
+            <th>DriveTypeId</th>
+            <th>DriveType</th>
+            <th>StateNumber</th>
+            <th>NumberOfSeats</th>
+            <th>NumberOfDoors</th>
+            <th>Price_USD</th>
+            <th>Price_UAH</th>
+            <th>Price_EUR</th>
+            <th>isNew</th>
+            <th>MileageIconPath</th>
+            <th>Mileage</th>
+            <th>VehicleIconPath</th>
+            <th>FuelTypeId</th>
+            <th>FuelType</th>
+            <th>Color</th>
+            <th>Description</th>
+            <th>SalesData</th>
+            <th>UserId</th>
+            <th>User</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var v in VehicleService.Vehicles)
+       {
+           <tr>
+               <td>@v.VehicleId</td>
+                <td>@v.RegionId</td>
+                <td>@v.Region.RegionName</td>
+                <td>@v.BodyTypeId</td>
+                <td>@v.BodyType.BodyTypeName</td>
+                <td>@v.VehicleModelId</td>
+                <td>@v.VehicleModel.VehicleModelName</td>
+                <td>@v.ProductionYear</td>
+                <td>@v.GearBoxId</td>
+                <td>@v.GearBox.GearBoxName</td>
+                <td>@v.DriveTypeId</td>
+                <td>@v.DriveType.DriveTypeName</td>
+                <td>@v.StateNumber</td>
+                <td>@v.NumberOfSeats</td>
+                <td>@v.NumberOfDoors</td>
+                <td>@v.Price_USD</td>
+                <td>@v.Price_UAH</td>
+                <td>@v.Price_EUR</td>
+                <td>@v.isNew</td>
+                <td>@v.MileageIconPath</td>
+                <td>@v.Mileage</td>
+                <td>@v.VehicleIconPath</td>
+                <td>@v.FuelTypeId</td>
+                <td>@v.FuelType.FuelTypeName</td>
+                <td>@v.Color</td>
+                <td>@v.Description</td>
+                <td>@v.SalesData</td>
+                <td>@v.UserId</td>
+               <td>@v.User.LastName</td>
+               <td>
+                   <button class="btn btn-primary" @onclick="(() => ShowVehicle(v.VehicleId))"><i class="oi oi-pencil"></i></button>
+               </td>
+           </tr>
+       }
+    </tbody>
+</table>
+
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await VehicleService.GetVehicles();
+    }
+
+    void ShowVehicle(int id){
+        NavigationManager.NavigateTo($"Vehicle/{id}");
+    }
+
+
+}

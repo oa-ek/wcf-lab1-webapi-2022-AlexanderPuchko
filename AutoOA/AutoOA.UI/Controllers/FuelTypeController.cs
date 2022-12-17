@@ -28,7 +28,7 @@ namespace AutoOA.UI.Controllers
             {
                 var fuelType = await _FuelTypeRepository.AddFuelTypeAsync(new FuelType
                 {
-                    FuelName = fuelTypeDto.FuelTypeName
+                    FuelTypeName = fuelTypeDto.FuelTypeName
                 });
                 return RedirectToAction("Index", "FuelType", new { id = fuelType.FuelTypeId });
             }
