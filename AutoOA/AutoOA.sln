@@ -16,11 +16,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoOA.API", "AutoOA.API\Au
 		{70E2244F-5F47-4375-845A-FD1E78CFAD8D} = {70E2244F-5F47-4375-845A-FD1E78CFAD8D}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoOA.Infrastructure", "AutoOA.Infrastructure\AutoOA.Infrastructure.csproj", "{24744016-E4C4-402D-8FAB-FDC067D3D4A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoOA.Infrastructure", "AutoOA.Infrastructure\AutoOA.Infrastructure.csproj", "{24744016-E4C4-402D-8FAB-FDC067D3D4A2}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6783E128-B3F3-48B9-89B6-FA62B7B5A7FE} = {6783E128-B3F3-48B9-89B6-FA62B7B5A7FE}
 		{70E2244F-5F47-4375-845A-FD1E78CFAD8D} = {70E2244F-5F47-4375-845A-FD1E78CFAD8D}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAutoOA.Server", "BlazorAutoOA\Server\BlazorAutoOA.Server.csproj", "{1A46AE21-C939-49BF-B11F-36664C52A996}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAutoOA.Client", "BlazorAutoOA\Client\BlazorAutoOA.Client.csproj", "{0E590853-A170-4ED6-BA18-DD6BA1BFC809}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAutoOA.Shared", "BlazorAutoOA\Shared\BlazorAutoOA.Shared.csproj", "{491A3B57-E629-4E79-B970-2616FBCEAB06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +54,18 @@ Global
 		{24744016-E4C4-402D-8FAB-FDC067D3D4A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24744016-E4C4-402D-8FAB-FDC067D3D4A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24744016-E4C4-402D-8FAB-FDC067D3D4A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A46AE21-C939-49BF-B11F-36664C52A996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A46AE21-C939-49BF-B11F-36664C52A996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A46AE21-C939-49BF-B11F-36664C52A996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A46AE21-C939-49BF-B11F-36664C52A996}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E590853-A170-4ED6-BA18-DD6BA1BFC809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E590853-A170-4ED6-BA18-DD6BA1BFC809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E590853-A170-4ED6-BA18-DD6BA1BFC809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E590853-A170-4ED6-BA18-DD6BA1BFC809}.Release|Any CPU.Build.0 = Release|Any CPU
+		{491A3B57-E629-4E79-B970-2616FBCEAB06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{491A3B57-E629-4E79-B970-2616FBCEAB06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{491A3B57-E629-4E79-B970-2616FBCEAB06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{491A3B57-E629-4E79-B970-2616FBCEAB06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
