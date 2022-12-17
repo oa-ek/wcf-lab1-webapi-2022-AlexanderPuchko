@@ -1,4 +1,6 @@
-﻿using System.Net.Http.Json;
+﻿using AutoOA.Core;
+using System.Net.Http.Json;
+using DriveType = AutoOA.Core.DriveType;
 
 namespace BlazorAutoOA.Client.Services.VehicleServices
 {
@@ -18,7 +20,7 @@ namespace BlazorAutoOA.Client.Services.VehicleServices
         public List<BodyType> BodyTypes { get; set; } = new List<BodyType>();
         public List<VehicleModel> VehicleModels { get; set; } = new List<VehicleModel>();
         public List<GearBox> GearBoxs { get; set; } = new List<GearBox>();
-        public List<BlazorAutoOA.Shared.DriveType> DriveTypes { get; set; } = new List<BlazorAutoOA.Shared.DriveType>();
+        public List<DriveType> DriveTypes { get; set; } = new List<DriveType>();
         public List<FuelType> FuelTypes { get; set; } = new List<FuelType>();
         public List<SalesData> SalesDatas { get; set; } = new List<SalesData>();
         public List<User> Users { get; set; } = new List<User>();

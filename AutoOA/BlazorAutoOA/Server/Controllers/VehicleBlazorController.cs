@@ -1,12 +1,9 @@
-﻿using AutoOA.Core;
-using AutoOA.Repository.Dto.VehicleDto;
+﻿using AutoOA.Repository.Dto.VehicleDto;
 using AutoOA.Repository.Repositories;
-using BlazorAutoOA.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing;
 using System.IO;
-using Vehicle = AutoOA.Core.Vehicle;
 
 namespace BlazorAutoOA.Server.Controllers
 {

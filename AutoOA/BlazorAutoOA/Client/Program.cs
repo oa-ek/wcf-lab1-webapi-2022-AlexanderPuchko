@@ -1,5 +1,4 @@
 global using BlazorAutoOA.Client.Services.VehicleServices;
-global using BlazorAutoOA.Shared;
 using BlazorAutoOA;
 using BlazorAutoOA.Client;
 using Microsoft.AspNetCore.Components.Web;

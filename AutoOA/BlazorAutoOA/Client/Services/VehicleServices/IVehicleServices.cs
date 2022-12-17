@@ -1,4 +1,5 @@
-﻿using DriveType = BlazorAutoOA.Shared.DriveType;
+﻿using AutoOA.Core;
+using DriveType = AutoOA.Core.DriveType;
 
 namespace BlazorAutoOA.Client.Services.VehicleServices
 {
@@ -26,6 +27,9 @@ namespace BlazorAutoOA.Client.Services.VehicleServices
 
 
         Task<Vehicle> GetSingleVehicle(int id);
+        
+
+
 
     }
 }

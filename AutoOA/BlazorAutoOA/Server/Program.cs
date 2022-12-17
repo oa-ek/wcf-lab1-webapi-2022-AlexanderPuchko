@@ -1,4 +1,3 @@
-global using BlazorAutoOA.Shared;
 global using Microsoft.EntityFrameworkCore;
 global using AutoOA.Core;
 using Microsoft.AspNetCore.ResponseCompression;
