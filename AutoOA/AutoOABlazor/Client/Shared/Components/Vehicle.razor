@@ -1,0 +1,45 @@
+﻿@using Syncfusion.Blazor.Buttons
+@inject NavigationManager Navigation
+@inject VehicleService VehicleService
+<h3>Vehicle</h3>
+
+
+
+@if (VehicleRead == null)
+{
+    <p><em>У вас нульове значення...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+                <tr>
+                    <td>@VehicleRead.BodyType</td>
+                </tr>
+            
+        </tbody>
+        <SfButton IsPrimary="true" OnClick="@GoToDetailsPage">Деталі</SfButton>
+    </table>
+}
+
+@code {
+    [Parameter]
+    public VehicleReadDto VehicleRead { get; set; }
+
+    public Vehicle(VehicleReadDto vehicleRead)
+    {
+        VehicleRead = vehicleRead;
+    }
+
+    void GoToDetailsPage()
+    {
+        Navigation.NavigateTo($"/vehicle/{VehicleRead.BodyType}");
+    }
+
+}

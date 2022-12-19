@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
+    <PackageReference Include="Blazored.Modal" Version="7.1.0" />
+    <PackageReference Include="Blazored.Typeahead" Version="4.7.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.12" PrivateAssets="all" />
+    <PackageReference Include="Syncfusion.Blazor" Version="20.3.0.61" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="20.3.0.61" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\AutoOA.Core\AutoOA.Core.csproj" />
+    <ProjectReference Include="..\..\AutoOA.Repository\AutoOA.Repository.csproj" />
+    <ProjectReference Include="..\Shared\AutoOABlazor.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
