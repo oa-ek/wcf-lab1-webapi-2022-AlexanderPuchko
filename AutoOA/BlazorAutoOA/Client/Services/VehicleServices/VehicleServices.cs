@@ -72,7 +72,7 @@ namespace BlazorAutoOA.Client.Services.VehicleServices
 
         public async Task GetVehicles()
         {
-            var result = await _http.GetFromJsonAsync<List<Vehicle>>("/vehicle");
+            var result = await _http.GetFromJsonAsync<List<Vehicle>>("api/vehicle");
             if (result != null)
                 Vehicles = result; 
         }
