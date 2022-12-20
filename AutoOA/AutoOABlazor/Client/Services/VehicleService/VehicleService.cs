@@ -15,7 +15,7 @@ namespace AutoOABlazor.Client.Services
 
         public async Task<VehicleReadDto> GetAsync(int id)
         {
-            return await Client.GetFromJsonAsync<VehicleReadDto>($"/api/vehicles/{id}");
+            return await Client.GetFromJsonAsync<VehicleReadDto>($"/api/vehicle/{id}");
         }
     }
 }

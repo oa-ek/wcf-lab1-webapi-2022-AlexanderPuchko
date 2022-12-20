@@ -16,60 +16,55 @@
 }
 else
 {
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Region</th>
-                <th>BodyType</th>
-                <th>VehicleModel</th>
-                <th>ProductionYear</th>
-                <th>GearBox</th>
-                <th>DriveType</th>
-                <th>StateNumber</th>
-                <th>NumberOfSeats</th>
-                <th>NumberOfDoors</th>
-                <th>Price_USD</th>
-                <th>Prise_UAH</th>
-                <th>Price_EUR</th>
-                <th>isNew</th>
-                <th>MileageIconPath</th>
-                <th>Mileage</th>
-                <th>VehicleIconPath</th>
-                <th>FuelType</th>
-                <th>Color</th>
-                <th>Description</th>
-                <th>SalesData</th>
-                <th>User</th>
-                <th>User</th>
+                <th>Регіон</th>
+                <th>Тип кузова</th>
+                <th>Модель автомобіля</th>
+                <th>Рік виробництва</th>
+                <th>Коробка передач</th>
+                <th>Тип приводу</th>
+                <th>Державний номер</th>
+                <th>Кількість місць</th>
+                <th>Кількість дверей</th>
+                <th>Ціна_USD</th>
+                <th>Ціна_ГРН</th>
+                <th>Ціна_EUR</th>
+                <th>Стан машини</th>
+                <th>Пробіг</th>
+                <th>Тип палива</th>
+                <th>Колір</th>
+                <th>Опис</th>
+                <th>Дані про продажі</th>
+                <th>Пошта продавця</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var veh in Vehicles)
             {
                 <tr>
-                    <td>@veh.VehicleId</td>
+                    <th>@veh.VehicleId</th>
                     <td>@veh.Region.RegionName</td>
                     <td>@veh.BodyType.BodyTypeName</td>
                     <td>@veh.VehicleModel.VehicleModelName</td>
                     <td>@veh.ProductionYear</td>
                     <td>@veh.GearBox.GearBoxName</td>
                     <td>@veh.DriveType.DriveTypeName</td>
+                    <td>@veh.StateNumber</td>
                     <td>@veh.NumberOfSeats</td>
                     <td>@veh.NumberOfDoors</td>
                     <td>@veh.Price_USD</td>
                     <td>@veh.Price_UAH</td>
                     <td>@veh.Price_EUR</td>
                     <td>@veh.isNew</td>
-                    <td>@veh.MileageIconPath</td>
                     <td>@veh.Mileage</td>
-                    <td>@veh.VehicleIconPath</td>
                     <td>@veh.FuelType.FuelTypeName</td>
                     <td>@veh.Color</td>
                     <td>@veh.Description</td>
-                    <td>@veh.SalesData.SalesDataId</td>
-                    <td>@veh.User.FirstName</td>
-                    <td>@veh.User.LastName</td>
+                    <td>@veh.SalesData.CreatedOn</td>
+                    <td>@veh.User</td>
                 </tr>
             }
         </tbody>
@@ -90,12 +85,12 @@ else
 
     void ShowHero(int id)
     {
-        Navigation.NavigateTo($"/vehicles/{id}");
+        Navigation.NavigateTo($"/vehicle/{id}");
     }
     
     void CreateNewVehicle()
     {
-        Navigation.NavigateTo("/vehicles/");
+        Navigation.NavigateTo("/vehicle/");
     }
 
 
