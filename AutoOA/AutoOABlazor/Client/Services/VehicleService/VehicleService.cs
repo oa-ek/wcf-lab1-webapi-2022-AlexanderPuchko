@@ -12,11 +12,6 @@ namespace AutoOABlazor.Client.Services
            return await Client.GetFromJsonAsync<IEnumerable<VehicleReadDto>>("/vehicle");
         }
 
-        //public async Task<int> CreateTimetablesAsync(TimetableCreateDto time)
-        //{
-           // var msg = await httpClient.PostAsJsonAsync<TimetableCreateDto>("/api/timetables", time);
-            //return int.Parse(await msg.Content.ReadAsStringAsync());
-        //}
 
         public async Task<VehicleReadDto> GetAsync(int id)
         {

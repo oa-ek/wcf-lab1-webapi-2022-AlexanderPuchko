@@ -1,39 +1,84 @@
 ﻿@page "/vehicle/index"
 @using AutoOABlazor.Client.Shared.Components
 @using Syncfusion.Blazor.Notifications
-
+@using AutoOA.Core;
 @inject VehicleService VehicleService
-@*inject TimetableRepository TimetableRepos*@
 @inject NavigationManager Navigation
-<h4>Предмети</h4>
-    <div class="">
-        <a class="btn btn-success" href="/create">Додати дані</a>
-    </div>
-<hr />
-@if(Vehicles is not null && Vehicles.Any())
+@inject HttpClient Http
+
+<PageTitle>Vehicle</PageTitle>
+
+<h3>Vehicle</h3>
+
+@if (Vehicles == null)
 {
-    <div class="row">
-        @foreach (var t in Vehicles)
-        {
-            <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12">
-            </div>
-        }
-    </div>
+    <p><em>Loading...</em></p>
 }
-    
-else if(Vehicles is not null)
+else
 {
-    <SfMessage Severity="MessageSeverity.Warning">Інформація про запити відсутня...</SfMessage>
-
-} else
-{
-    <SpinnerComponent></SpinnerComponent>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Region</th>
+                <th>BodyType</th>
+                <th>VehicleModel</th>
+                <th>ProductionYear</th>
+                <th>GearBox</th>
+                <th>DriveType</th>
+                <th>StateNumber</th>
+                <th>NumberOfSeats</th>
+                <th>NumberOfDoors</th>
+                <th>Price_USD</th>
+                <th>Prise_UAH</th>
+                <th>Price_EUR</th>
+                <th>isNew</th>
+                <th>MileageIconPath</th>
+                <th>Mileage</th>
+                <th>VehicleIconPath</th>
+                <th>FuelType</th>
+                <th>Color</th>
+                <th>Description</th>
+                <th>SalesData</th>
+                <th>User</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var veh in Vehicles)
+            {
+                <tr>
+                    <td>@veh.VehicleId</td>
+                    <td>@veh.Region.RegionName</td>
+                    <td>@veh.BodyType.BodyTypeName</td>
+                    <td>@veh.VehicleModel.VehicleModelName</td>
+                    <td>@veh.ProductionYear</td>
+                    <td>@veh.GearBox.GearBoxName</td>
+                    <td>@veh.DriveType.DriveTypeName</td>
+                    <td>@veh.NumberOfSeats</td>
+                    <td>@veh.NumberOfDoors</td>
+                    <td>@veh.Price_USD</td>
+                    <td>@veh.Price_UAH</td>
+                    <td>@veh.Price_EUR</td>
+                    <td>@veh.isNew</td>
+                    <td>@veh.MileageIconPath</td>
+                    <td>@veh.Mileage</td>
+                    <td>@veh.VehicleIconPath</td>
+                    <td>@veh.FuelType.FuelTypeName</td>
+                    <td>@veh.Color</td>
+                    <td>@veh.Description</td>
+                    <td>@veh.SalesData.SalesDataId</td>
+                    <td>@veh.User.FirstName,@veh.User.UserName</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 
-@code {
 
-    
-    //public TimetableReadDto? TimetableRead { get; set; }
+
+@code {        
     private IEnumerable<VehicleReadDto> Vehicles = null;
 
     protected override async Task OnInitializedAsync()
@@ -41,18 +86,17 @@ else if(Vehicles is not null)
         Vehicles = await VehicleService.GetVehiclesAsync();
     }
 
-    void GoToNewRequestPage()
+    
+
+    void ShowHero(int id)
     {
-        Navigation.NavigateTo("/vehicles/new");
+        Navigation.NavigateTo($"/vehicles/{id}");
+    }
+    
+    void CreateNewVehicle()
+    {
+        Navigation.NavigateTo("/vehicles/");
     }
 
-    void GoToDetailsPage()
-    {
-        //Navigation.NavigateTo($"/Vehicles/{TimetableRead.TimetableId}");
-    }
 
-    void GoToEditPage()
-    {
-       // Navigation.NavigateTo($"/Vehicles/edit/{TimetableRead.TimetableId}");
-    }
 }

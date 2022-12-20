@@ -21,8 +21,21 @@ namespace AutoOA.Repository.Repositories
         //API
         public async Task<IEnumerable<VehicleReadDto>> GetListAsync() //Вивід всіх даних
         {
-            return _mapper.Map<IEnumerable<VehicleReadDto>>(await _ctx.Vehicles.ToListAsync());
+            return 
+                _mapper.Map<IEnumerable<VehicleReadDto>>(await _ctx.Vehicles.
+                Include(x => x.VehicleModel).ThenInclude(x => x.VehicleBrand).
+                Include(x => x.BodyType).
+                Include(x => x.DriveType).
+                Include(x => x.FuelType).
+                Include(x => x.GearBox).
+                Include(x => x.Region).
+                Include(x => x.User).
+                Include(x => x.SalesData).
+                ToListAsync());
         }
+
+        
+
         public async Task<VehicleReadDto> GetAsync(int id) //Вивід даних по id
         {
             return _mapper.Map<VehicleReadDto>(await _ctx.Vehicles.FirstAsync(x => x.VehicleId == id));
